@@ -11,7 +11,7 @@ public class ArrivalEvent extends Event {
 		super(eventTime);
 		this.customer=customer;
 	}
-	
+	 Hej
 //	@Override
 //	public void exeEvent(SimState state, EventQueue eventQueue) {
 //		if (state.open()==false) {
