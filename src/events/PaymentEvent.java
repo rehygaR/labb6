@@ -16,9 +16,9 @@ public class PaymentEvent extends Event{
 		state.currentEvent = "Betalning";
 		state.numOfCustomers-=1;
 		state.numCustomersLeaving+=1;
-		if(state.numCustomersInQueue>0) {
-			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(),this.customer));
-			state.numCustomersInQueue-=1;
+		if(state.queue.size()>0) {
+			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(),(Customer) state.queue.first()));
+			state.queue.removeFirst();
 		}else {
 			state.freeCheckouts+=1;
 		}

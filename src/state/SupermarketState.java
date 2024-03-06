@@ -26,7 +26,6 @@ public class SupermarketState extends SimState {
 	public int freeCheckouts; // Detta ska räknas ut genom att ta i akt på FIFO tillståndet och antal personer i snabbköpet
 	private double sumTimeFreeCheckouts; // Summering av tiden som det funnits lediga kassor. Slutas räknas då sista kunden betalat och lämnat snabbköpet. (Även om det kommer en ny kund som inte kommer in pga stängning)
 	public int numCustomersLeaving; // Antal kunder som handlat och lämnar snabbköpet (genomgått alla kund-händelser)
-	public int numCustomersInQueue; // Antal kunder som är i kassakön (FIFO:n)
 	private double sumTimeCustomersInQueue; // Summering av tiden som en kund stått i kön.
 	public int numCustomersMissed; // Missade kunder
 	public int totalQueuedCustomers;
@@ -60,7 +59,6 @@ public class SupermarketState extends SimState {
 		this.maxNumOfCustomers = maxCustomers;
 		this.sumTimeCustomersInQueue = 0.0;
 		this.numCustomersLeaving = 0;
-		this.numCustomersInQueue = 0;
 		this.sumTimeCustomersInQueue = 0.0;
 		this.numCustomersMissed = 0;
 		this.totalQueuedCustomers = 0;
@@ -109,12 +107,9 @@ public class SupermarketState extends SimState {
 		return numCustomersLeaving;
 	}
 	
-	public int getCurrentInQueue() {
-		return numCustomersInQueue;
-	}
 	
 	public double getQueueTime() {
-		sumTimeCustomersInQueue = (double) getCurrentInQueue() * payment.getNextTime(currentTime);
+		sumTimeCustomersInQueue = (double) queue.size() * payment.getNextTime(currentTime);
 		return sumTimeCustomersInQueue;
 	}
 	
@@ -136,7 +131,7 @@ public class SupermarketState extends SimState {
 	}
 	
 	public double getAverageQueueTime() { // Returnerar den tid i snitt som kunder får köa
-		sumTimeCustomersInQueue = (double) getCurrentInQueue() * payment.getNextTime(currentTime);
+		sumTimeCustomersInQueue = (double) queue.size() * payment.getNextTime(currentTime);
 		return sumTimeCustomersInQueue;
 	}
 	
