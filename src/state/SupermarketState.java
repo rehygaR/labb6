@@ -163,6 +163,8 @@ public class SupermarketState extends SimState {
 		return this.numCustomersLeaving;
 	}
 	
+	
+	
 	/**
 	 * Sätter antalet kunder som betalat (som också då lämnar butiken)
 	 * @param numCustomersLeaving

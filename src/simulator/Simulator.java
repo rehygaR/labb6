@@ -6,17 +6,12 @@ import state.SimState;
 
 public class Simulator {
 	
-	EventQueue eventQueue = new EventQueue();
+	EventQueue eventQueue;
 	
 	
-
-	public Simulator() {
+	
+	public void run(SimState state, EventQueue eventQueue) {
 		
-		eventQueue.addEvent(new StartEvent());
-		
-	}
-	
-	public void run(SimState state) {
 		while (state.getSimActive()) {
 			eventQueue.nextEvent().exeEvent(state, eventQueue);
 		}
