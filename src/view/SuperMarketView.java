@@ -63,7 +63,7 @@ public class SuperMarketView extends simView {
 		System.out.print(String.valueOf(state.getMissedCustomers()) + "     ");		//antal missade  kunder
 		System.out.print(String.valueOf(state.getQueuedCustomers()) + "    ");		//antal som varit i FIFO kön
 		System.out.print(String.valueOf(state.getQueueTime())+ "      ");			//total kötid
-		System.out.print(String.valueOf(state.getCurrentInQueue()) + "  ");		//antal i kö just nu
+		System.out.print(String.valueOf(state.queue.size()) + "  ");		//antal i kö just nu
 		System.out.print(state.getStringQueue());					//vilka kunder som är i kön (getStringQueue ska returnera en sträng och inte en ArrayList
 	}
 	
