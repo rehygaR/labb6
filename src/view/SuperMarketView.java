@@ -21,7 +21,7 @@ public class SuperMarketView extends simView {
 
 	public void printStart() {
 		System.out.println("PARAMETRAR \n ==========");
-		System.out.println("Antal kassor, N..........: " + String.valueOf(N));
+		System.out.println("Antal kassor, N..........: " + String.valueOf(state.getNumCheckouts()));
 		System.out.println("Max som ryms, M..........: " + String.valueOf(M));
 		System.out.println("Ankomsthastighet, lambda.: " + String.valueOf(L));
 		System.out.println("Plocktider, [P_min..Pmax]: " + "[" + String.valueOf(LOW_COLLECTION_TIME) + ".." + String.valueOf(HIGH_COLLECTION_TIME) + "]");
@@ -77,7 +77,7 @@ public class SuperMarketView extends simView {
 				+ " kunder handlade " + String.valueOf(state.getTotalPayingCustomers()) + " medan "
 				+ String.valueOf(state.getMissedCustomers()) + " missades.\n");
 		
-		System.out.println("2) Total tid " + String.valueOf(N) + " kassor varit lediga: " + String.valueOf(state.getFreeCashierTime()) 
+		System.out.println("2) Total tid " + String.valueOf(state.getNumCheckouts()) + " kassor varit lediga: " + String.valueOf(state.getFreeCashierTime()) 
 				+ " te.\nGenomsnittlig ledig kassatid: " + String.valueOf(state.getAverageFreeCashierTime()) 
 				+ "te (dvs" + String.valueOf(state.getFreeCashierPercentage()) + "% av tiden från öppning tills sista kunden betalat).\n");
 		
