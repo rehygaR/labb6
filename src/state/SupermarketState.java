@@ -7,17 +7,16 @@ import java.util.Observer;
  * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
  */
 
-/*
+/**
  * Denna klass ska hålla reda på tillståndet som snabbköpet har i ett specifikt
  * tillfälle. Den ärver den abstrakta klassen simState och implementerar de
  * generella metoderna från den som är gemensam för alla olika sorters
  * simuleringar. 
  */
-
 @SuppressWarnings("unused")
 public class SupermarketState extends SimState {
 
-	/*
+	/**
 	 * Tilltståndsvariabler / Statistik
 	 */
 	private int maxNumOfCustomers;
@@ -47,6 +46,17 @@ public class SupermarketState extends SimState {
 //	public PaymentTime payment; // = new PaymentTime(0.5,1.0); // Betalningstidskälla, samma som ovan
 	private FIFO queue; //= new FIFO();
 	
+	/**
+	 * Konstruktor, skapar en instans av SupermarketState som håller reda på tillståndet i generatorn
+	 * @param Antal kassor
+	 * @param Maximala antalet kunder som får vistas i butiken
+	 * @param Ankomst-lambda, används för att generera slumptal
+	 * @param Plock-tiden, den lägre limiten av intervallet
+	 * @param Plock-tiden, den högre limiten av intervallet
+	 * @param Betalnings-tiden, den lägre limiten av intervallet
+	 * @param Betalnings-tiden, den högre limiten av intervallet
+	 * @param Tiden butiken stänger
+	 */
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda,
 			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime){ // Konstruktor, behövs detta?
 		this.numCheckouts = antalKassor;
@@ -74,6 +84,12 @@ public class SupermarketState extends SimState {
 	/*
 	 * Getters & Setters
 	 */
+	
+	/**
+	 * Metod som returnerar om butiken är öppen eller ej
+	 * @return false
+	 * @return true
+	 */
 	public boolean open() {
 		if (getTime() >= closingTime) { // 10 placeholder, 10 står för tiden när butiken stänger
 			return false;
@@ -82,120 +98,228 @@ public class SupermarketState extends SimState {
 		}
 	}
 	
+	/**
+	 * Returnerar maximala antalet kunder
+	 * @return maxNumOfCustomers
+	 */
 	public int getMaxNumOfCustomers() {
 		return this.maxNumOfCustomers;
 	}
 	
+	/**
+	 * Returnerar antalet kunder
+	 * @return numOfCustomers
+	 */
 	public int getCurrentCustomers() {
 		return this.numOfCustomers;
 	}
 	
+	/**
+	 * Sätter antalet kunder till det parameterna anger
+	 * @param numOfCustomers
+	 */
 	public void setCurrrentCustomers(int numOfCustomers) {
 		this.numOfCustomers = numOfCustomers;
 	}
 	
+	/**
+	 * Ger antalet kassor
+	 * @return numCheckouts
+	 */
 	public int getNumCheckouts() {
 		return this.numCheckouts;
 	}
 	
+	/**
+	 * Ger antalet lediga kassor
+	 * @return freeCheckouts
+	 */
 	public int getFreeCashiers() {
 		return this.freeCheckouts;
 	}
 	
+	/**
+	 * Sätter antalet lediga kassor
+	 * @param freeCheckouts
+	 */
 	public void setFreeCashiers(int freeCheckouts) {
 		this.freeCheckouts = freeCheckouts;
 	}
 	
+	/**
+	 * Ger den lediga tiden kassorna har
+	 * @return sumTimeFreeCheckouts
+	 */
 	public double getFreeCashierTime() { // Troligtvis fel beräkning!!!
 		this.sumTimeFreeCheckouts = (double) getFreeCashiers() * getTime();
 		return this.sumTimeFreeCheckouts;
 	}
 	
-	
+	/**
+	 * Ger det totala antalet av kunderna som betalat (som då också lämnar butiken)
+	 * @return numCustomersLeaving
+	 */
 	public int getTotalPayingCustomers() {
 		return this.numCustomersLeaving;
 	}
 	
+	/**
+	 * Sätter antalet kunder som betalat (som också då lämnar butiken)
+	 * @param numCustomersLeaving
+	 */
 	public void setTotalPayingCustomers(int numCustomersLeaving) {
 		this.numCustomersLeaving = numCustomersLeaving;
 	}
 	
-	
+	/**
+	 * Ger kö-tiden
+	 * @return sumTimeCustomersInQueue
+	 */
 	public double getQueueTime() { // Troligtvis fel beräknad!!!!
 		this.sumTimeCustomersInQueue = (double) queue.size() * getPaymentTime();
 		return this.sumTimeCustomersInQueue;
 	}
 	
+	/**
+	 * Ger antalet kunder som inte får komma in och handla (pga butiken är stängd)
+	 * @return numCustomersMissed
+	 */
 	public int getMissedCustomers() {
 		return this.numCustomersMissed;
 	}
 	
+	/**
+	 * Sätter antal kunder som missats pga stängning
+	 * @param numOfCustomersMissed
+	 */
 	public void setMissedCustomers(int numOfCustomersMissed) {
 		this.numCustomersMissed = numOfCustomersMissed;
 	}
 	
+	/**
+	 * Returnerar antalet kunder som är i FIFO kön
+	 * @return queue.size()
+	 */
 	public int getQueuedCustomers() { // Returnerar antal Customers i FIFO kön (en int)
 		return this.queue.size();
 	}
 	
+	/**
+	 * Ger kön i string format
+	 * @return queue.toString()
+	 */
 	public String getStringQueue() { // Returnerar en sträng av kön, id på kund och vilken plats (index 0 = längst fram, FIFO)
 		return this.queue.toString();
 	}
 	
+	/**
+	 * Ger den genomsnittliga lediga tiden som kassorna har
+	 * @return sumTimeFreeCheckouts
+	 */
 	public double getAverageFreeCashierTime() { // Returnerar den tid i snitt som kassor är lediga FEL!!!
-		this.sumTimeFreeCheckouts = (double) getFreeCashiers() * currentTime;
+		this.sumTimeFreeCheckouts = (double) getFreeCashiers() * getTime();
 		return this.sumTimeFreeCheckouts;
 	}
 	
+	/**
+	 * Ger den genomsnittliga kö tiden för kunderna
+	 * @return sumTimeCustomersInQueue
+	 */
 	public double getAverageQueueTime() { // Returnerar den tid i snitt som kunder får köa FEL!!!
 		this.sumTimeCustomersInQueue = (double) queue.size() * getPaymentTime();
 		return this.sumTimeCustomersInQueue;
 	}
 	
+	/**
+	 * Ger den procentuella tiden som kassorna varit lediga
+	 * @return getFreeCashierTime() / getTime()
+	 */
 	public double getFreeCashierPercentage() {
 		return getFreeCashierTime() / getTime();
 	}
 	
+	/**
+	 * Ger den tid där butiken ska stänga
+	 * @return closingTime
+	 */
 	public double getClosingTime() {
 		return this.closingTime;
 	}
 	
+	/**
+	 * Ger tiden för nästa händelse
+	 * @return new ArrivalTime(arrivalLambda).getNextTime(getTime())
+	 */
 	public double getArrivalTime() { // Ger ett nytt slumptal på AnkomstTid
-		return new ArrivalTime(arrivalLambda).getNextTime(currentTime);
+		return new ArrivalTime(arrivalLambda).getNextTime(getTime());
 	}
 	
+	/**
+	 * Ger tiden för nästa händelse
+	 * @return new PickupTime(pickupL, pickupH).getNextTime(getTime())
+	 */
 	public double getPickupTime() {
-		return new PickupTime(pickupL, pickupH).getNextTime(currentTime);
+		return new PickupTime(pickupL, pickupH).getNextTime(getTime());
 	}
 	
+	/**
+	 * Ger tiden för nästa händelse
+	 * @return new PickupTime(paymentL, paymentH).getNextTime(getTime())
+	 */
 	public double getPaymentTime() {
-		return new PaymentTime(paymentL, paymentH).getNextTime(currentTime);
+		return new PaymentTime(paymentL, paymentH).getNextTime(getTime());
 	}
 	
+	/**
+	 * Ger ID:et på kunden
+	 * @return cutomerID
+	 */
 	public int getCurrentCustomerID() {
 		return this.customerID;
 	}
 	
+	/**
+	 * Ger det nuvarande händelsen
+	 * @return currentEvent
+	 */
 	public String getCurrentEvent() {
 		return this.currentEvent;
 	}
 	
+	/**
+	 * Sätter den nuvarande händelsen
+	 * @param currentEvent
+	 */
 	public void setCurrentEvent(String currentEvent) {
 		this.currentEvent = currentEvent;
 	}
 	
-	public FIFO getFIFO() { // Returnerar FIFO kön
+	/**
+	 * Ger FIFO kön
+	 * @return queue
+	 */
+	public FIFO getFIFO() { // Returnerar FIFO-kön
 		return this.queue;
 	}
 	
+	/**
+	 * Lägger till en kund till FIFO-kön
+	 * @param cr
+	 */
 	public void addFIFO(Customer cr) { // Lägger till en Customer i FIFO kön
 		this.queue.add(cr);
 	}
 	
+	/**
+	 * Tar bort den första kunden i FIFO-kön
+	 */
 	public void removeFirstFIFO() { // Tar bort det första Customern i FIFO kön
 		this.queue.removeFirst();
 	}
 	
+	/**
+	 * Ger true eller false beroende på om kön är tom eller ej
+	 */
 	public void isEmptyFIFO() { // Returnerar true eller false beroende på om kön är tom eller ej
 		this.queue.isEmpty();
 	}
