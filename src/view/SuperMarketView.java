@@ -1,6 +1,8 @@
 package view;
 
 
+
+
 import java.util.Observer;
 import events.Event;
 import state.SupermarketState;
@@ -30,10 +32,10 @@ public class SuperMarketView extends simView {
 		System.out.println("   Tid Händelse  Kund  ?  led   ledT   I   $   :-(   köat   köT   köar  [Kassakö..]");
 	}
 
-	public void printEvent() { 			// event ska vara EventQueue eller Event? Hur får vi vilket event i String format?
+	public void printEvent(Event event) { 			// event ska vara EventQueue eller Event? Hur får vi vilket event i String format?
 		System.out.println(String.valueOf(state.getTime()) + " ");				//tid
-		System.out.print(state.getCurrentEvent());										//händelsetyp
-		switch(state.getCurrentEvent()) {													//switch sats för att ge rätt inkrement beroende på vilken typ av händelse det är
+		System.out.print(event.getClass().getName());										//händelsetyp
+		switch(event.getName()) {													//switch sats för att ge rätt inkrement beroende på vilken typ av händelse det är
 			case "Start": return;
 			
 			case "Ankomst": System.out.print("      ");
