@@ -1,5 +1,9 @@
 package events;
 
+/*
+ * hejsan
+ */
+
 import state.SimState;
 import state.SupermarketState;
 
