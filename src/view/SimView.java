@@ -25,7 +25,7 @@ public abstract class SimView implements Observer{
 		
 	}
 	
-	public void printStopEvent() {
+	public void printResult() {
 		
 	}
 	

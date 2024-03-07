@@ -1,15 +1,14 @@
 package state;
 
 public class Customer {
-	CustomerSource customerSource = new CustomerSource();
 	private int id;
 //	private double arrivalTime;
 //	private double pickUpTime;
 //	private double paymentTime;
 	
 
-	public Customer() {
-		this.id = customerSource.newCustomerID();
+	public Customer(int ID) {
+		this.id = ID;
 //		this.arrivalTime = arrivalTime;
 //		this.pickUpTime = pickUpTime;
 //		this.paymentTime = paymentTime;

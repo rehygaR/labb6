@@ -32,7 +32,7 @@ public abstract class Event {
 //	}
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		state.currentTime=this.eventTime;
+		state.setTime(eventTime);
 		SpecificExe(state, eventQueue);
 	}
 	

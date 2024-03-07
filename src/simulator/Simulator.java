@@ -22,12 +22,12 @@ public class Simulator {
 			//eventQueue.nextEvent().exeEvent(state);
 			state.notifyObserver();
 			view.printEvent();
-			if (x > 10) { // debug
-				break;
-			}
-			x++;
+//			if (x > 10) { // debug
+//				break;
+//			}
+//			x++;
 		}
-		view.printStopEvent();
+		view.printResult();
 	}
 
 }

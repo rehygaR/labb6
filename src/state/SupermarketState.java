@@ -44,6 +44,7 @@ public class SupermarketState extends SimState {
 	private PickupTime pickup;// = new PickupTime(0.5,1.0); // Plocktidskälla, parametrar byts ut mot de angivna i runSim ( variabler)
 	private PaymentTime payment; // = new PaymentTime(0.5,1.0); // Betalningstidskälla, samma som ovan
 	private FIFO queue; //= new FIFO();
+	private CustomerSource CS;
 	
 	/**
 	 * Konstruktor, skapar en instans av SupermarketState som håller reda på tillståndet i generatorn
@@ -69,7 +70,6 @@ public class SupermarketState extends SimState {
 		this.maxNumOfCustomers = maxCustomers;
 		this.sumTimeCustomersInQueue = 0.0;
 		this.numCustomersLeaving = 0;
-		this.sumTimeCustomersInQueue = 0.0;
 		this.numCustomersMissed = 0;
 		this.totalQueuedCustomers = 0;
 		this.closingTime = closingTime;
@@ -80,6 +80,8 @@ public class SupermarketState extends SimState {
 		this.paymentH = paymentH;
 		this.paymentL = paymentL;
 		this.currentEvent = "";
+		this.CS=new CustomerSource();
+		
 	}
 	
 	/***
@@ -154,7 +156,7 @@ public class SupermarketState extends SimState {
 	 * @return sumTimeFreeCheckouts
 	 */
 	public double getFreeCashierTime() { // Troligtvis fel beräkning!!!
-		this.sumTimeFreeCheckouts = (double) getFreeCashiers() * getTime();
+		this.sumTimeFreeCheckouts += (double) getFreeCashiers() * (getTime()-getPreviousTime());
 		return this.sumTimeFreeCheckouts;
 	}
 	
@@ -173,13 +175,19 @@ public class SupermarketState extends SimState {
 	public void addTotalPayingCustomers() {
 		this.numCustomersLeaving += 1;
 	}
+
+	
+	public int getTotalQueuedCustomers() {
+		return this.totalQueuedCustomers;
+	}
+	
 	
 	/**
 	 * Ger kö-tiden
 	 * @return sumTimeCustomersInQueue
 	 */
-	public double getQueueTime() { // Troligtvis fel beräknad!!!!
-		this.sumTimeCustomersInQueue = (double) queue.size() * getPaymentTime();
+	public double getTotalQueueTime() { // Troligtvis fel beräknad!!!!
+		this.sumTimeCustomersInQueue += (double) queue.size() * (getTime()-getPreviousTime());
 		return this.sumTimeCustomersInQueue;
 	}
 	
@@ -218,27 +226,25 @@ public class SupermarketState extends SimState {
 	 * Ger den genomsnittliga lediga tiden som kassorna har
 	 * @return sumTimeFreeCheckouts
 	 */
-	public double getAverageFreeCashierTime() { // Returnerar den tid i snitt som kassor är lediga FEL!!!
-		this.sumTimeFreeCheckouts = (double) getFreeCashiers() * getTime();
-		return this.sumTimeFreeCheckouts;
-	}
+//	public double getAverageFreeCashierTime() { // Returnerar den tid i snitt som kassor är lediga FEL!!!
+//		return getFreeCashierTime()/numCheckouts;
+//	}
 	
 	/**
 	 * Ger den genomsnittliga kö tiden för kunderna
 	 * @return sumTimeCustomersInQueue
 	 */
-	public double getAverageQueueTime() { // Returnerar den tid i snitt som kunder får köa FEL!!!
-		this.sumTimeCustomersInQueue = (double) queue.size() * getPaymentTime();
-		return this.sumTimeCustomersInQueue;
-	}
+//	public double getAverageQueueTime() { // Returnerar den tid i snitt som kunder får köa FEL!!!
+//		return getQueueTime()/numCustomersLeaving;
+//	}
 	
 	/**
 	 * Ger den procentuella tiden som kassorna varit lediga
 	 * @return getFreeCashierTime() / getTime()
 	 */
-	public double getFreeCashierPercentage() {
-		return getFreeCashierTime() / getTime();
-	}
+//	public double getFreeCashierPercentage() {
+//		return getFreeCashierTime() / getTime();
+//	}
 	
 	/**
 	 * Ger den tid där butiken ska stänga
@@ -331,6 +337,9 @@ public class SupermarketState extends SimState {
 		this.queue.isEmpty();
 	}
 	
+	public CustomerSource getCS() {
+		return CS;
+	}
 	
 	
 //	public addTime(Event event) { // Lägger till tid beroende på vilket event

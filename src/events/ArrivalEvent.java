@@ -27,17 +27,16 @@ public class ArrivalEvent extends Event {
 	@Override
 	public void SpecificExe (SupermarketState state, EventQueue eventQueue) {
 		
-		state.setCurrentCustomerID(this.customer.getId());
+		state.setCurrentCustomerID(customer.getId());
 		state.setCurrentEvent("Ankomst");
-		System.out.print("Ankomst");
 		if (state.open()==false) {
 			return;
 		}else if(state.getCurrentCustomers() == state.getMaxNumOfCustomers()){
 			state.setMissedCustomers(); // Adderar en till missade kunder
 		}else {
 			state.addCurrrentCustomers();
-			eventQueue.addEvent(new PickUpEvent(state.getPickupTime(), this.customer)); // Ger tiden för pickupevent 
-			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer())); //state.getArrivalTime()
+			eventQueue.addEvent(new PickUpEvent(state.getPickupTime(), customer)); // Ger tiden för pickupevent 
+			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), state.getCS().newCustomer())); //state.getArrivalTime()
 		}
 		
 		

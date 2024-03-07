@@ -1,17 +1,14 @@
 package state;
 
 public class CustomerSource {
-	public int id = 0;
+	private int nextID;
 
-	
-	
 	public CustomerSource() {
-		this.id = id;		
+		nextID=0;
 	}
 	
-	public int newCustomerID() {
-		id++;
-		return id - 1;
+	public Customer newCustomer() {
+		return new Customer(nextID++);
 	}
 	
 	
