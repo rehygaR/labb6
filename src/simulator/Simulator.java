@@ -18,9 +18,10 @@ public class Simulator {
 		
 		while (state.getSimActive()) {
 			eventQueue.nextEvent().exeEvent(state, eventQueue);
+			//eventQueue.nextEvent().exeEvent(state);
 			state.notifyObserver();
 			view.printEvent();
-			if (x > 100) {
+			if (x > 100) { // debug
 				break;
 			}
 			x++;

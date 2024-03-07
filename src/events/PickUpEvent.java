@@ -15,6 +15,7 @@ public class PickUpEvent extends Event {
 	
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
+		super.exeEvent(state);
 		state.setCurrentCustomerID(customer.getId());
 		state.setCurrentEvent("Plock");
 		if (state.getFreeCashiers()>0) {

@@ -8,6 +8,7 @@ public class ClosingEvent extends Event {
 	}
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
+		super.exeEvent(state);
 		state.setCurrentEvent("Stänger");
     }
 	

@@ -13,6 +13,7 @@ public class PaymentEvent extends Event{
 	
     public void exeEvent(SupermarketState state, EventQueue eventQueue) {
 		//state.customerID = this.customer.getId();
+    	super.exeEvent(state);
     	state.setCurrentCustomerID(this.customer.getId());
 		state.setCurrentEvent("Betalning");
 		state.minusCurrentCustomers();

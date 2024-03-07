@@ -31,11 +31,11 @@ public class Event {
 //		return "Event";
 //	}
 	
-	
-	
 	public void exeEvent(SimState state, EventQueue eventQueue) {
 		state.currentTime=this.eventTime;
+		System.out.print("Generell");
 	}
+
 	
 
 }

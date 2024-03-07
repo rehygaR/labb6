@@ -28,9 +28,10 @@ public class ArrivalEvent extends Event {
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
 		// TODO Auto-generated method stub
-		
+		super.exeEvent(state);
 		state.setCurrentCustomerID(this.customer.getId());
 		state.setCurrentEvent("Ankomst");
+		System.out.print("Ankomst");
 		if (state.open()==false) {
 			return;
 		}else if(state.getCurrentCustomers() == state.getMaxNumOfCustomers()){
