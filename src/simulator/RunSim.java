@@ -16,7 +16,7 @@ public class RunSim {
 		int N = 4;
 		
 		SupermarketState state = new SupermarketState(N, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
-				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME);
+				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
 		
 		
 		EventQueue eventQueue = new EventQueue();

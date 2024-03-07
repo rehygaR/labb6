@@ -20,7 +20,6 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	 */
 	private double currentTime;
 	private double previousTime=0;
-	private double previousPreviousTime=0;
 	private boolean simActive;
 	
 	public SimState() {
@@ -40,12 +39,7 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 		return previousTime;
 	}
 	
-	public double getPreviousPreviousTime() {
-		return previousPreviousTime;
-	}
-	
 	public void setTime(double newCurrentTime) {
-		previousPreviousTime=previousTime;
 		previousTime=currentTime;
 		currentTime=newCurrentTime;
 	}

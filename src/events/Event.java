@@ -32,8 +32,11 @@ public abstract class Event {
 //	}
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		state.setTime(eventTime);
+		if(eventTime!=state.getStopTime()) {
+			state.setTime(eventTime);
+		}
 		SpecificExe(state, eventQueue);
+		
 	}
 	
 	public abstract void SpecificExe (SupermarketState state, EventQueue eventQueue);

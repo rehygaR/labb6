@@ -16,6 +16,7 @@ public class SuperMarketView extends SimView {
 	
 	private DecimalFormat df = new DecimalFormat("0.00");
 	private SupermarketState state;
+	private double lastPaymentTime;
 	
 	public SuperMarketView(SupermarketState state) {
 		this.state = state;
@@ -53,6 +54,7 @@ public class SuperMarketView extends SimView {
 			break;
 			
 			case "Betalning": System.out.print("    ");
+			lastPaymentTime=state.getTime();
 			break;
 			
 			case "Stänger": System.out.print("      ");
@@ -95,7 +97,7 @@ public class SuperMarketView extends SimView {
 		
 		System.out.println("2) Total tid " + String.valueOf(df.format(state.getNumCheckouts())) + " kassor varit lediga: " + String.valueOf(df.format(state.getFreeCashierTime())) 
 				+ " te.\nGenomsnittlig ledig kassatid: " + String.valueOf(df.format(state.getFreeCashierTime()/state.getNumCheckouts())) 
-				+ " te (dvs " + String.valueOf(df.format(state.getFreeCashierTime()/state.getTime()*100)) + "% av tiden från öppning tills sista kunden betalat).\n");
+				+ " te (dvs " + String.valueOf(df.format(state.getFreeCashierTime()/state.getNumCheckouts()/lastPaymentTime*100)) + "% av tiden från öppning tills sista kunden betalat).\n");
 		
 		System.out.println("3) Total tid " + String.valueOf(state.getTotalQueuedCustomers()) 
 				+ " kunder tvingats köa: " + String.valueOf(df.format(state.getTotalQueueTime())) 

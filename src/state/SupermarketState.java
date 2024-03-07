@@ -28,6 +28,7 @@ public class SupermarketState extends SimState {
 	private int numCustomersMissed; // Missade kunder
 	private int totalQueuedCustomers;
 	private double closingTime;
+	private double stopTime;
 	private int customerID;
 	private double arrivalLambda;
 	private double pickupL;
@@ -58,7 +59,7 @@ public class SupermarketState extends SimState {
 	 * @param closingTime
 	 */
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda,
-			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime){ // Konstruktor, behövs detta?
+			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime, double stopTime){ // Konstruktor, behövs detta?
 		this.numCheckouts = antalKassor;
 //		this.currentTime = super.currentTime;
 		this.numOfCustomers = 0;
@@ -73,6 +74,7 @@ public class SupermarketState extends SimState {
 		this.numCustomersMissed = 0;
 		this.totalQueuedCustomers = 0;
 		this.closingTime = closingTime;
+		this.stopTime=stopTime;
 		this.customerID = 0;
 		this.arrivalLambda = arrivalLambda;
 		this.pickupL = pickupL;
@@ -186,7 +188,7 @@ public class SupermarketState extends SimState {
 	 * Ger kö-tiden
 	 * @return sumTimeCustomersInQueue
 	 */
-	public double getTotalQueueTime() { // Troligtvis fel beräknad!!!!
+	public double getTotalQueueTime() {
 		this.sumTimeCustomersInQueue += (double) queue.size() * (getTime()-getPreviousTime());
 		return this.sumTimeCustomersInQueue;
 	}
@@ -254,6 +256,10 @@ public class SupermarketState extends SimState {
 		return this.closingTime;
 	}
 	
+	
+	public double getStopTime() {
+		return this.stopTime;
+	}
 	/**
 	 * Ger tiden för nästa händelse
 	 * @return new ArrivalTime(arrivalLambda).getNextTime(getTime())
