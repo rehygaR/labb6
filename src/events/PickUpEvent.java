@@ -15,14 +15,13 @@ public class PickUpEvent extends Event {
 	
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		state.customerID = this.customer.getId();
-		state.currentEvent = "Plock";
+		state.setCurrentCustomerID(customer.getId());
+		state.setCurrentEvent("Plock");
 		if (state.getFreeCashiers()>0) {
-			state.freeCheckouts-=1;
-			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(), this.customer));		
+			state.setFreeCashiers(state.getFreeCashiers()-1);
+			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(), customer));		
 		}else {
-			state.numCustomersInQueue+=1;
-			state.queue.add(this.customer); // Så här?
+			state.addFIFO(customer); // Så här?
 			//Placera kunden i kassakön
 		}
 	}

@@ -8,7 +8,7 @@ public class StopEvent extends Event{
 	}
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		state.currentEvent = "Stop";
+		state.setCurrentEvent("Stop");
 		state.simBreak();
 	}
 	

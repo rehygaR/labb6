@@ -9,7 +9,7 @@ public class StartEvent extends Event{
 	}
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		state.currentEvent = "Start";
+		state.setCurrentEvent("Start");
 		eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer()));
 		eventQueue.addEvent(new ClosingEvent(state.getClosingTime()));
 	}
