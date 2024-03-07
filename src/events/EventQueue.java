@@ -12,6 +12,10 @@ import java.util.*;
 public class EventQueue {
 	public ArrayList<Event> queue;
 	
+	public EventQueue() {
+		this.queue = new ArrayList<Event>();
+	}
+	
 	public Event nextEvent() {//Returnerar nästa event baserat på närhet i tid.
 		sortEvents();
 		return queue.get(0);
@@ -31,7 +35,10 @@ public class EventQueue {
 		while(notSorted) {
 			n=0; 
 			for(int i=0;i<queue.size();i++) {
-				if(queue.get(i).getEventTime()>queue.get(i+1).getEventTime()) {
+				if (i+1 == queue.size()) {
+					continue;
+				}
+				else if(queue.get(i).getEventTime()>queue.get(i+1).getEventTime()) {
 					Event movedEvent=queue.get(i+1);
 					queue.set(i+1,queue.get(i));
 					queue.set(i,movedEvent);

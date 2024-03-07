@@ -78,6 +78,7 @@ public class SupermarketState extends SimState {
 		this.pickupH = pickupH;
 		this.paymentH = paymentH;
 		this.paymentL = paymentL;
+		this.currentEvent = "";
 	}
 	
 	/***
@@ -328,6 +329,8 @@ public class SupermarketState extends SimState {
 	public void isEmptyFIFO() { // Returnerar true eller false beroende på om kön är tom eller ej
 		this.queue.isEmpty();
 	}
+	
+	
 	
 //	public addTime(Event event) { // Lägger till tid beroende på vilket event
 //		

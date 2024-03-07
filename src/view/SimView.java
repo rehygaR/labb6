@@ -8,13 +8,27 @@ import java.util.Observer;
  * Detta interface ärver observer och ska observera den generella simState interfacet.
  */
 @SuppressWarnings("deprecation")
-public abstract class simView implements Observer{
+public abstract class SimView implements Observer{
 
 	
 	
 	/*
 	 * Eftersom detta interface är en observatör, behövs en update-metod, dock tom för oss.
 	 */
+	
+	
+	public void printStart() {
+		
+	}
+	
+	public void printEvent() {
+		
+	}
+	
+	public void printStopEvent() {
+		
+	}
+	
 
 	@Override
 	public void update(Observable o, Object arg) {

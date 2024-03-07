@@ -11,7 +11,7 @@ import events.EventQueue;
 
 import static random.K.*;
 
-public class SuperMarketView extends simView {
+public class SuperMarketView extends SimView {
 	private SupermarketState state;
 	
 	public SuperMarketView(SupermarketState state) {
@@ -19,6 +19,7 @@ public class SuperMarketView extends simView {
 		state.addObserver(this);
 	}
 
+	@Override
 	public void printStart() {
 		System.out.println("PARAMETRAR \n ==========");
 		System.out.println("Antal kassor, N..........: " + String.valueOf(state.getNumCheckouts()));
@@ -31,7 +32,9 @@ public class SuperMarketView extends simView {
 		System.out.println("FÖRLOPP\n=======");
 		System.out.println("   Tid Händelse  Kund  ?  led   ledT   I   $   :-(   köat   köT   köar  [Kassakö..]");
 	}
-
+	
+	
+	@Override
 	public void printEvent() { 			// event ska vara EventQueue eller Event? Hur får vi vilket event i String format?
 		System.out.println(String.valueOf(state.getTime()) + " ");				//tid
 		System.out.print(state.getCurrentEvent());										//händelsetyp
@@ -67,7 +70,7 @@ public class SuperMarketView extends simView {
 		System.out.print(state.getStringQueue());					//vilka kunder som är i kön (getStringQueue ska returnera en sträng och inte en ArrayList
 	}
 	
-	
+	@Override
 	public void printStopEvent() {
 		System.out.println(String.valueOf(state.getTime()));				//tid
 		System.out.print("Stop\n");								

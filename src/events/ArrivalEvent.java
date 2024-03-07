@@ -41,6 +41,7 @@ public class ArrivalEvent extends Event {
 			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer()));
 		}
 		
+		
 
 	}
 	

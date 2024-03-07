@@ -24,6 +24,7 @@ public class PickUpEvent extends Event {
 			state.addFIFO(customer); // Så här?
 			//Placera kunden i kassakön
 		}
+		
 	}
 	
 //	@Override

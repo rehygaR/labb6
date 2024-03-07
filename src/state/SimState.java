@@ -62,4 +62,8 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 		return this.simActive;
 	}
 	
+	public void notifyObserver() {
+		notifyObservers();
+	}
+	
 }

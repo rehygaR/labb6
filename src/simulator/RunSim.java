@@ -28,7 +28,7 @@ public class RunSim {
 		
 
 		Simulator simulator = new Simulator();
-		simulator.run(state, eventQueue);
+		simulator.run(state, eventQueue, view);
 	}
 
 }
