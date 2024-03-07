@@ -29,7 +29,7 @@ public class ArrivalEvent extends Event {
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
 		// TODO Auto-generated method stub
 		
-		state.customerID = this.customer.getId();
+		state.getCurre = this.customer.getId();
 		state.currentEvent = "Ankomst";
 		if (state.open()==false) {
 			return;

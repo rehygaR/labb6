@@ -278,6 +278,10 @@ public class SupermarketState extends SimState {
 		return this.customerID;
 	}
 	
+	public void setCurrentCustomerID(int id) {
+		this.customerID = id;
+	}
+	
 	/**
 	 * Ger det nuvarande händelsen
 	 * @return currentEvent
