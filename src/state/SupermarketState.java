@@ -113,11 +113,14 @@ public class SupermarketState extends SimState {
 	}
 	
 	/**
-	 * Sätter antalet kunder till det parameterna anger
-	 * @param numOfCustomers
+	 * Plussar på 1 till antalet kunder 
 	 */
-	public void setCurrrentCustomers(int numOfCustomers) {
-		this.numOfCustomers = numOfCustomers;
+	public void addCurrrentCustomers() {
+		this.numOfCustomers += 1;
+	}
+	
+	public void minusCurrentCustomers() {
+		this.numOfCustomers -= 1;
 	}
 	
 	/**
@@ -162,13 +165,11 @@ public class SupermarketState extends SimState {
 	}
 	
 	
-	
 	/**
-	 * Sätter antalet kunder som betalat (som också då lämnar butiken)
-	 * @param numCustomersLeaving
+	 * Lägger till 1 på antal kunder som betalat (som också då lämnar butiken)
 	 */
-	public void setTotalPayingCustomers(int numCustomersLeaving) {
-		this.numCustomersLeaving = numCustomersLeaving;
+	public void addTotalPayingCustomers() {
+		this.numCustomersLeaving += 1;
 	}
 	
 	/**
@@ -189,11 +190,10 @@ public class SupermarketState extends SimState {
 	}
 	
 	/**
-	 * Sätter antal kunder som missats pga stängning
-	 * @param numOfCustomersMissed
+	 * Lägger till 1 på kunder som missats pga stängning
 	 */
-	public void setMissedCustomers(int numOfCustomersMissed) {
-		this.numCustomersMissed = numOfCustomersMissed;
+	public void setMissedCustomers() {
+		this.numCustomersMissed += 1;
 	}
 	
 	/**

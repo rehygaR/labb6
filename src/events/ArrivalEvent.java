@@ -29,14 +29,14 @@ public class ArrivalEvent extends Event {
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
 		// TODO Auto-generated method stub
 		
-		state.getCurre = this.customer.getId();
-		state.currentEvent = "Ankomst";
+		state.setCurrentCustomerID(this.customer.getId());
+		state.setCurrentEvent("Ankomst");
 		if (state.open()==false) {
 			return;
 		}else if(state.getCurrentCustomers() == state.getMaxNumOfCustomers()){
-			state.numCustomersMissed++;
+			state.setMissedCustomers(); // Adderar en till missade kunder
 		}else {
-			state.numOfCustomers++;
+			state.addCurrrentCustomers();
 			eventQueue.addEvent(new PickUpEvent(state.getPickupTime(), this.customer)); // Ger tiden för pickupevent
 			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer()));
 		}

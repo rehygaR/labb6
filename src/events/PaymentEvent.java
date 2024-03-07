@@ -12,15 +12,16 @@ public class PaymentEvent extends Event{
 	
 	
     public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		state.customerID = this.customer.getId();
-		state.currentEvent = "Betalning";
-		state.numOfCustomers-=1;
-		state.numCustomersLeaving+=1;
-		if(state.queue.size()>0) {
-			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(),(Customer) state.queue.first()));
-			state.queue.removeFirst();
+		//state.customerID = this.customer.getId();
+    	state.setCurrentCustomerID(this.customer.getId());
+		state.setCurrentEvent("Betalning");
+		state.minusCurrentCustomers();
+		state.addTotalPayingCustomers();
+		if(state.getQueuedCustomers()>0) {
+			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(),(Customer) state.getFIFO().first()));
+			state.removeFirstFIFO();
 		}else {
-			state.freeCheckouts+=1;
+			state.setFreeCashiers(state.getFreeCashiers()+1);
 		}
     }
 	
