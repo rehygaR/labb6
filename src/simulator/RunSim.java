@@ -10,9 +10,10 @@ import view.SuperMarketView;
 
 public class RunSim {
 	
-	private static int N = 4; //Antal kassor
+	
 
 	public static void main(String[] args) {
+		int N = 4;
 		
 		SupermarketState state = new SupermarketState(N, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME);

@@ -3,8 +3,8 @@ package events;
 import state.SupermarketState;
 
 public class StopEvent extends Event{
-	public StopEvent() {
-		super(999);
+	public StopEvent(double stopTime) {
+		super(stopTime);
 	}
 	
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
