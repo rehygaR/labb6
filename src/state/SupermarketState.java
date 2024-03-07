@@ -61,7 +61,6 @@ public class SupermarketState extends SimState {
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda,
 			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime, double stopTime){ // Konstruktor, behövs detta?
 		this.numCheckouts = antalKassor;
-//		this.currentTime = super.currentTime;
 		this.numOfCustomers = 0;
 		this.freeCheckouts = numCheckouts;
 		this.queue = new FIFO();

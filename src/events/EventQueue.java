@@ -2,38 +2,46 @@ package events;
 import java.util.ArrayList;
 //import org.w3c.dom.events.Event;
 import java.util.*;
-
+/**
+ * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
+ */
 /*
- * En klass som fungerar som mellansteg mellan eventen och simulatorn. 
- * Här finns två metoder, changeState() som levererar nästa event som ska utföras till simulatorn
- * och sortEvent() som sorterar eventen efter tid. Klassen håller därmed alltid reda
- * på i vilken tidsordning eventen ska exekveras och levererar rätt element till simulatorn.
+ * En klass som fungerar som mellansteg mellan eventen och simulatorn.Metoder:
+ * nextEvent() levererar nästa event i listan.
+ * addEvent(Event event) lägger till event i listan.
+ * sortEvents() sorterar eventen så de ligger i rätt tidsordning.
  */
 public class EventQueue {
-	public ArrayList<Event> queue;
+	private ArrayList<Event> queue;
 	
+	/*
+	 * Konstruktorn. När en instans av EventQueue skapas håller den reda på eventen i en instans av ArrayList.
+	 */
 	public EventQueue() {
 		this.queue = new ArrayList<Event>();
 	}
 	
-	public Event nextEvent() {//Returnerar nästa event baserat på närhet i tid.
+	/*
+	 * Sorterar eventen i tidsordning, hämtar ut det första eventet och tar därefter bort det ur listan. Returnerar det eventet som var först i listan.
+	 */
+	public Event nextEvent() {
 		sortEvents();
-//		for (Event element:queue) {
-//			System.out.println(element.getEventTime());
-//		}
 		Event event=queue.get(0);
 		queue.remove(0);
 		return event;
 	}
 	
+	/*
+	 * Lägger till event i listan.
+	 */
 	public void addEvent(Event event) {
 		queue.add(event);
 	}
 	
-	public boolean isEmpty() {
-		return queue.size()==0;
-	}
-	
+	/*
+	 * Sorterar eventen efter tid. Går igenom listan och om ett event ska genomföras senare än det efterföljande eventet 
+	 * byter dessa plats. Listan kontrolleras tills inga events behöver byta plats med varandra.
+	 */
 	private void sortEvents() {//Sorterar listan efter tid.
 		boolean notSorted=true;
 		int n=0;
