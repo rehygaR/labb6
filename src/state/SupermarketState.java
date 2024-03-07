@@ -13,7 +13,6 @@ import java.util.Observer;
  * generella metoderna från den som är gemensam för alla olika sorters
  * simuleringar. 
  */
-@SuppressWarnings("unused")
 public class SupermarketState extends SimState {
 
 	/**
@@ -48,14 +47,14 @@ public class SupermarketState extends SimState {
 	
 	/**
 	 * Konstruktor, skapar en instans av SupermarketState som håller reda på tillståndet i generatorn
-	 * @param Antal kassor
-	 * @param Maximala antalet kunder som får vistas i butiken
-	 * @param Ankomst-lambda, används för att generera slumptal
-	 * @param Plock-tiden, den lägre limiten av intervallet
-	 * @param Plock-tiden, den högre limiten av intervallet
-	 * @param Betalnings-tiden, den lägre limiten av intervallet
-	 * @param Betalnings-tiden, den högre limiten av intervallet
-	 * @param Tiden butiken stänger
+	 * @param antalKassor
+	 * @param maxCustomers
+	 * @param arrivalLambda
+	 * @param pickupL
+	 * @param pickupH
+	 * @param paymentL
+	 * @param paymentH
+	 * @param closingTime
 	 */
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda,
 			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime){ // Konstruktor, behövs detta?
@@ -81,14 +80,13 @@ public class SupermarketState extends SimState {
 		this.paymentL = paymentL;
 	}
 	
-	/*
+	/***
 	 * Getters & Setters
 	 */
 	
 	/**
 	 * Metod som returnerar om butiken är öppen eller ej
-	 * @return false
-	 * @return true
+	 * @return false or true
 	 */
 	public boolean open() {
 		if (getTime() >= closingTime) { // 10 placeholder, 10 står för tiden när butiken stänger
@@ -305,10 +303,11 @@ public class SupermarketState extends SimState {
 	}
 	
 	/**
-	 * Lägger till en kund till FIFO-kön
+	 * Lägger till en kund till FIFO-kön, samt lägger till en kund i totalQueuedCustomers (statistik)
 	 * @param cr
 	 */
 	public void addFIFO(Customer cr) { // Lägger till en Customer i FIFO kön
+		totalQueuedCustomers = totalQueuedCustomers + 1;
 		this.queue.add(cr);
 	}
 	
