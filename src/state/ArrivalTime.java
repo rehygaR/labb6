@@ -20,10 +20,11 @@ public class ArrivalTime {
 //	}
 	
 	private double delta;
-	ExponentialRandomStream x = new ExponentialRandomStream(this.delta);
+	ExponentialRandomStream x;
 	
 	public ArrivalTime(double delta) {
 		this.delta = delta;
+		this.x = new ExponentialRandomStream(this.delta);
 	}
 	
 	public double getNextTime(double currentTime) {	
@@ -35,7 +36,7 @@ public class ArrivalTime {
 		 *är den förväntade tiden mellan på varandra följande kunder ¼ timmar (15 minuter).	
 		 *Anges denna parameter av runSim???
 		 */
-		return x.next() + currentTime;
+		return this.x.next() + currentTime;
 	}
 	
 //	public static void main(String[] args) { // Test av klass!

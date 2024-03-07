@@ -15,17 +15,18 @@ public class PaymentTime {
 	
 	private double deltaL;
 	private double deltaH;
-	UniformRandomStream x = new UniformRandomStream(this.deltaL,this.deltaH);
+	UniformRandomStream x;
 	
 	public PaymentTime(double deltaLower, double deltaHigher) {
 		this.deltaL = deltaLower;
 		this.deltaH = deltaHigher;
+		this.x = new UniformRandomStream(this.deltaL,this.deltaH);
 	}
 
 	
 	public double getNextTime(double currentTime) {
 		
-		return x.next() + currentTime;
+		return this.x.next() + currentTime;
 	}
 
 }
