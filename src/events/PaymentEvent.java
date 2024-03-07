@@ -10,10 +10,9 @@ public class PaymentEvent extends Event{
         this.customer=customer;
     }
 	
-	
-    public void exeEvent(SupermarketState state, EventQueue eventQueue) {
+	@Override
+    public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
 		//state.customerID = this.customer.getId();
-    	super.exeEvent(state);
     	state.setCurrentCustomerID(this.customer.getId());
 		state.setCurrentEvent("Betalning");
 		state.minusCurrentCustomers();

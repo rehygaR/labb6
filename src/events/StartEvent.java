@@ -9,15 +9,16 @@ public class StartEvent extends Event{
 	public StartEvent() {
 		super(0);
 	}
-	
-	
-	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
+
+	@Override
+	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
 		//super.exeEvent(state);
 		state.setCurrentEvent("Start");
-		eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer()));
+		eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer())); //
 		//eventQueue.addEvent(new ClosingEvent(state.getClosingTime()));
-		System.out.print("start");
+		//System.out.print("start");
 	}
+
 
 
 	

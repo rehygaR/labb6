@@ -24,11 +24,9 @@ public class ArrivalEvent extends Event {
 //			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime()));
 //		}
 //	}
-
-	
-	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		// TODO Auto-generated method stub
-		super.exeEvent(state);
+	@Override
+	public void SpecificExe (SupermarketState state, EventQueue eventQueue) {
+		
 		state.setCurrentCustomerID(this.customer.getId());
 		state.setCurrentEvent("Ankomst");
 		System.out.print("Ankomst");
@@ -38,13 +36,16 @@ public class ArrivalEvent extends Event {
 			state.setMissedCustomers(); // Adderar en till missade kunder
 		}else {
 			state.addCurrrentCustomers();
-			eventQueue.addEvent(new PickUpEvent(state.getPickupTime(), this.customer)); // Ger tiden för pickupevent
-			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer()));
+			eventQueue.addEvent(new PickUpEvent(state.getPickupTime(), this.customer)); // Ger tiden för pickupevent 
+			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), new Customer())); //state.getArrivalTime()
 		}
 		
 		
 
 	}
+
+	
+	
 	
 	
 //	@Override

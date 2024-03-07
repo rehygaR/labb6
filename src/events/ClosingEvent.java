@@ -6,9 +6,8 @@ public class ClosingEvent extends Event {
 	public ClosingEvent(double eventTime) {
 		super(eventTime);
 	}
-	
-	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		super.exeEvent(state);
+	@Override
+	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
 		state.setCurrentEvent("Stänger");
     }
 	

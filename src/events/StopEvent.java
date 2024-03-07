@@ -7,9 +7,8 @@ public class StopEvent extends Event{
 		super(stopTime);
 	}
 	
-	
-	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
-		super.exeEvent(state);
+	@Override
+	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
 		state.setCurrentEvent("Stop");
 		state.simBreak();
 	}

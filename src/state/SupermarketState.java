@@ -40,9 +40,9 @@ public class SupermarketState extends SimState {
 	
 	//protected double currentTimeCustomer = 0; // Nuvarande tiden för en specifik kund. Sluta räknas efter att sista kunden betalat.
 	
-//	public ArrivalTime arrive;// = new ArrivalTime(4.0); // Ankomsttidskälla, 4.0 bytsut mot det man anger i runSim
-//	public PickupTime pickup;// = new PickupTime(0.5,1.0); // Plocktidskälla, parametrar byts ut mot de angivna i runSim ( variabler)
-//	public PaymentTime payment; // = new PaymentTime(0.5,1.0); // Betalningstidskälla, samma som ovan
+	private ArrivalTime arrive;// = new ArrivalTime(4.0); // Ankomsttidskälla, 4.0 bytsut mot det man anger i runSim
+	private PickupTime pickup;// = new PickupTime(0.5,1.0); // Plocktidskälla, parametrar byts ut mot de angivna i runSim ( variabler)
+	private PaymentTime payment; // = new PaymentTime(0.5,1.0); // Betalningstidskälla, samma som ovan
 	private FIFO queue; //= new FIFO();
 	
 	/**
@@ -59,12 +59,13 @@ public class SupermarketState extends SimState {
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda,
 			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime){ // Konstruktor, behövs detta?
 		this.numCheckouts = antalKassor;
-		//this.currentTime = super.currentTime;
+//		this.currentTime = super.currentTime;
 		this.numOfCustomers = 0;
 		this.freeCheckouts = numCheckouts;
 		this.queue = new FIFO();
-//		this.pickup = new PickupTime(pickupL, pickupH);
-//		this.payment = new PaymentTime(paymentL, paymentH);
+		this.arrive= new ArrivalTime(arrivalLambda);
+		this.pickup = new PickupTime(pickupL, pickupH);
+		this.payment = new PaymentTime(paymentL, paymentH);
 		this.maxNumOfCustomers = maxCustomers;
 		this.sumTimeCustomersInQueue = 0.0;
 		this.numCustomersLeaving = 0;
@@ -252,7 +253,7 @@ public class SupermarketState extends SimState {
 	 * @return new ArrivalTime(arrivalLambda).getNextTime(getTime())
 	 */
 	public double getArrivalTime() { // Ger ett nytt slumptal på AnkomstTid
-		return new ArrivalTime(arrivalLambda).getNextTime(getTime());
+		return arrive.getNextTime(getTime());
 	}
 	
 	/**

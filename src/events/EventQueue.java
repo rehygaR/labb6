@@ -18,7 +18,12 @@ public class EventQueue {
 	
 	public Event nextEvent() {//Returnerar nästa event baserat på närhet i tid.
 		sortEvents();
-		return queue.get(0);
+//		for (Event element:queue) {
+//			System.out.println(element.getEventTime());
+//		}
+		Event event=queue.get(0);
+		queue.remove(0);
+		return event;
 	}
 	
 	public void addEvent(Event event) {

@@ -21,7 +21,7 @@ public class RunSim {
 		
 		EventQueue eventQueue = new EventQueue();
 		eventQueue.addEvent(new StartEvent());
-		eventQueue.addEvent(new ClosingEvent(END_TIME));
+		eventQueue.addEvent(new ClosingEvent(100)); //END_TIME
 		eventQueue.addEvent(new StopEvent(STOP_TIME)); //StopEvent måste ha double argument
 		
 		SuperMarketView view = new SuperMarketView(state);

@@ -12,7 +12,7 @@ import state.SupermarketState;
  * setEventTime(double eventTime) sätter tiden som händelsen ska utföras.
  */
 
-public class Event {
+public abstract class Event {
 	private double eventTime; //Tiden händelsen inträffar
 	
 	public Event(double eventTime) { //Konstruktor
@@ -31,10 +31,13 @@ public class Event {
 //		return "Event";
 //	}
 	
-	public void exeEvent(SimState state, EventQueue eventQueue) {
+	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
 		state.currentTime=this.eventTime;
-		System.out.print("Generell");
+		SpecificExe(state, eventQueue);
 	}
+	
+	public abstract void SpecificExe (SupermarketState state, EventQueue eventQueue);
+	
 
 	
 
