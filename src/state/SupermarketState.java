@@ -157,8 +157,11 @@ public class SupermarketState extends SimState {
 	 * Ger den lediga tiden kassorna har
 	 * @return sumTimeFreeCheckouts
 	 */
-	public double getFreeCashierTime() { // Troligtvis fel beräkning!!!
+	public void updateFreeCashierTime() {
 		this.sumTimeFreeCheckouts += (double) getFreeCashiers() * (getTime()-getPreviousTime());
+	}
+	
+	public double getFreeCashierTime() {
 		return this.sumTimeFreeCheckouts;
 	}
 	
@@ -188,8 +191,10 @@ public class SupermarketState extends SimState {
 	 * Ger kö-tiden
 	 * @return sumTimeCustomersInQueue
 	 */
-	public double getTotalQueueTime() {
+	public void updateTotalQueueTime() {
 		this.sumTimeCustomersInQueue += (double) queue.size() * (getTime()-getPreviousTime());
+	}
+	public double getTotalQueueTime() {
 		return this.sumTimeCustomersInQueue;
 	}
 	

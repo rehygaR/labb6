@@ -40,7 +40,11 @@ public class SuperMarketView extends SimView {
 	
 	@Override
 	public void printEvent() { 			// event ska vara EventQueue eller Event? Hur får vi vilket event i String format?
-		System.out.print("  " + String.valueOf(df.format(state.getTime())) + " ");				//tid
+		if(state.getCurrentEvent()!="Stop") {
+			System.out.print("  " + String.valueOf(df.format(state.getTime())) + " ");				//tid
+		}else {
+			System.out.print("  " + String.valueOf(df.format(state.getStopTime())) + " ");
+		}
 		System.out.print(state.getCurrentEvent());										//händelsetyp
 		switch(state.getCurrentEvent()) {													//switch sats för att ge rätt inkrement beroende på vilken typ av händelse det är
 			case "Start": System.out.print("\n");
@@ -61,7 +65,6 @@ public class SuperMarketView extends SimView {
 			break;
 			
 			case "Stop": System.out.print("\n");
-			
 			return;
 		}
 			
@@ -75,11 +78,13 @@ public class SuperMarketView extends SimView {
 		}
 		
 		System.out.print(String.valueOf(state.getFreeCashiers()) + "   ");		//antal lediga kassor
+		state.updateFreeCashierTime();
 		System.out.print(String.valueOf(df.format(state.getFreeCashierTime())) + "   ");		//tid då kassorna varit lediga
 		System.out.print(String.valueOf(state.getCurrentCustomers()) + "   ");	//antalet kunder i butiken
 		System.out.print(String.valueOf(state.getTotalPayingCustomers()) + "    ");//antal kunder som handlat
 		System.out.print(String.valueOf(state.getMissedCustomers()) + "      ");		//antal missade  kunder
 		System.out.print(String.valueOf(state.getTotalQueuedCustomers()) + "   ");		//antal som varit i FIFO kön
+		state.updateTotalQueueTime();
 		System.out.print(String.valueOf(df.format(state.getTotalQueueTime()))+ "      ");			//total kötid
 		System.out.print(String.valueOf(state.getQueuedCustomers()) + "  ");		//antal i kö just nu
 		System.out.println(state.getStringQueue());					//vilka kunder som är i kön (getStringQueue ska returnera en sträng och inte en ArrayList
