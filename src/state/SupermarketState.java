@@ -65,9 +65,9 @@ public class SupermarketState extends SimState {
 		this.numOfCustomers = 0;
 		this.freeCheckouts = numCheckouts;
 		this.queue = new FIFO();
-		this.arrive= new ArrivalTime(arrivalLambda);
-		this.pickup = new PickupTime(pickupL, pickupH);
-		this.payment = new PaymentTime(paymentL, paymentH);
+		this.arrive= new ArrivalTime(arrivalLambda, seed);
+		this.pickup = new PickupTime(pickupL, pickupH, seed);
+		this.payment = new PaymentTime(paymentL, paymentH, seed);
 		this.maxNumOfCustomers = maxCustomers;
 		this.sumTimeCustomersInQueue = 0.0;
 		this.numCustomersLeaving = 0;
@@ -77,13 +77,8 @@ public class SupermarketState extends SimState {
 		this.stopTime=stopTime;
 		this.customerID = 0;
 		this.arrivalLambda = arrivalLambda;
-		this.pickupL = pickupL;
-		this.pickupH = pickupH;
-		this.paymentH = paymentH;
-		this.paymentL = paymentL;
 		this.currentEvent = "";
 		this.CS=new CustomerSource();
-		this.seed = seed;
 		
 	}
 	
@@ -279,7 +274,7 @@ public class SupermarketState extends SimState {
 	 * @return new PickupTime(pickupL, pickupH).getNextTime(getTime())
 	 */
 	public double getPickupTime() {
-		return new PickupTime(pickupL, pickupH).getNextTime(getTime());
+		return pickup.getNextTime(getTime());
 	}
 	
 	/**
@@ -287,7 +282,7 @@ public class SupermarketState extends SimState {
 	 * @return new PickupTime(paymentL, paymentH).getNextTime(getTime())
 	 */
 	public double getPaymentTime() {
-		return new PaymentTime(paymentL, paymentH).getNextTime(getTime());
+		return payment.getNextTime(getTime());
 	}
 	
 	/**

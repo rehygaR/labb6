@@ -19,12 +19,19 @@ public class ArrivalTime {
 //		return super.currentTimeCustomer = super.currentTimeCustomer + getArrivalTime();
 //	}
 	
+	private long seed;
 	private double delta;
 	ExponentialRandomStream x;
 	
-	public ArrivalTime(double delta) {
+//	public ArrivalTime(double delta) {
+//		this.delta = delta;
+//		this.x = new ExponentialRandomStream(this.delta);
+//	}
+	
+	public ArrivalTime(double delta, int seed) {
 		this.delta = delta;
-		this.x = new ExponentialRandomStream(this.delta);
+		this.seed = seed;
+		this.x = new ExponentialRandomStream(this.delta, this.seed);
 	}
 	
 	public double getNextTime(double currentTime) {	

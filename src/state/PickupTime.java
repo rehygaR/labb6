@@ -15,12 +15,20 @@ public class PickupTime {
 
 	private double deltaH;
 	private double deltaL;
+	private long seed;
 	UniformRandomStream x; // Placeholder, hämtas från runSim
 	
-	public PickupTime(double deltaL, double deltaH) {
+//	public PickupTime(double deltaL, double deltaH) {
+//		this.deltaH = deltaH;
+//		this.deltaL = deltaL;
+//		this.x = new UniformRandomStream(this.deltaH, this.deltaL);
+//	}
+	
+	public PickupTime(double deltaL, double deltaH, long seed) {
 		this.deltaH = deltaH;
 		this.deltaL = deltaL;
-		this.x = new UniformRandomStream(deltaL, deltaH);
+		this.seed = seed;
+		this.x = new UniformRandomStream(this.deltaL, this.deltaH, this.seed);
 	}
 	
 	public double getNextTime(double currentTime) {
