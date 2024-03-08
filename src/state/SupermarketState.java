@@ -36,6 +36,7 @@ public class SupermarketState extends SimState {
 	private double paymentL;
 	private double paymentH;
 	private String currentEvent;
+	private int seed;
 	
 	//private double currentTime; // Nuvarande tiden för hela simuleringen. Sluta räknas efter att sista kunden betalat.
 	
@@ -59,7 +60,7 @@ public class SupermarketState extends SimState {
 	 * @param closingTime
 	 */
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda,
-			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime, double stopTime){ // Konstruktor, behövs detta?
+			double pickupL, double pickupH, double paymentL, double paymentH, double closingTime, double stopTime, int seed){ // Konstruktor, behövs detta?
 		this.numCheckouts = antalKassor;
 		this.numOfCustomers = 0;
 		this.freeCheckouts = numCheckouts;
@@ -82,6 +83,7 @@ public class SupermarketState extends SimState {
 		this.paymentL = paymentL;
 		this.currentEvent = "";
 		this.CS=new CustomerSource();
+		this.seed = seed;
 		
 	}
 	

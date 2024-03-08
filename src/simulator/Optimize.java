@@ -19,31 +19,32 @@ import view.SuperMarketView;
 public class Optimize {
 
 	public static void main(String[] args) {
-		SupermarketState state = new SupermarketState(1, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
-				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
-		int Nopt = 0;
-		int prevMissedCustomers = state.getMissedCustomers();
-		
-		for (int i = 2; i <=  M; i++) {
-			SupermarketState state = new SupermarketState(i, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
-					LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
+//		SupermarketState state = new SupermarketState(1, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
+//				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
+//		int Nopt = 0;
+//		int prevMissedCustomers = state.getMissedCustomers();
+//		
+//		for (int i = 2; i <=  M; i++) {
+//			SupermarketState state = new SupermarketState(i, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
+//					LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
+//			
 			
 			
+//			if(state.getMissedCustomers() < prevMissedCustomers) {
+//				prevMissedCustomers = state.getMissedCustomers();
+//				Nopt = i;
+//				
+//			}
 			
-			if(state.getMissedCustomers() < prevMissedCustomers) {
-				prevMissedCustomers = state.getMissedCustomers();
-				Nopt = i;
-				
-			}
-			
-			
+		SupermarketState test = metod1();
 		}
 		
+		
 
-	}
 	
-	public SupermarketState metod1() {
-		int N = 4;
+	
+	public SupermarketState metod1(int N, int M, int L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
+			double LOW_PAYMENT_TIME, double HIGH_PAYMENT_TIME, double END_TIME, double STOP_TIME) {
 		
 		SupermarketState state = new SupermarketState(N, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
@@ -58,7 +59,16 @@ public class Optimize {
 		
 
 		Simulator simulator = new Simulator();
-		simulator.run(state, eventQueue, view);
+		simulator.run(state, eventQueue, view, false);
+		
+		return state;
+		
+	}
+	
+	public int metod2(int M, int L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
+			double LOW_PAYMENT_TIME, double HIGH_PAYMENT_TIME, double END_TIME, double STOP_TIME) {
+		
+		
 		
 	}
 
