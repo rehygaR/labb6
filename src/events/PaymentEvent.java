@@ -27,6 +27,9 @@ public class PaymentEvent extends Event{
 		
     	state.setCurrentCustomerID(this.customer.getId());
 		state.setCurrentEvent("Betalning");
+		state.updateFreeCashierTime();
+		state.updateTotalQueueTime();
+		state.notifyObserver();
 		state.minusCurrentCustomers();
 		state.addTotalPayingCustomers();
 		if(state.getQueuedCustomers()>0) {
@@ -35,7 +38,6 @@ public class PaymentEvent extends Event{
 		}else {
 			state.setFreeCashiers(state.getFreeCashiers()+1);
 		}
-		state.updateFreeCashierTime();
-		state.updateTotalQueueTime();
+		
     }
 }

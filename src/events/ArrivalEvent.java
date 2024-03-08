@@ -28,6 +28,7 @@ public class ArrivalEvent extends Event {
 		
 		state.setCurrentCustomerID(customer.getId());
 		state.setCurrentEvent("Ankomst");
+		state.notifyObserver();
 		state.updateFreeCashierTime();
 		state.updateTotalQueueTime();
 		if (state.open()==false) {

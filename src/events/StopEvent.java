@@ -20,6 +20,7 @@ public class StopEvent extends Event{
 	@Override
 	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
 		state.setCurrentEvent("Stop");
+		state.notifyObserver();
 		state.simBreak();
 	}
 }

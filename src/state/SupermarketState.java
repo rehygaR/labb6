@@ -91,7 +91,7 @@ public class SupermarketState extends SimState {
 	 * @return false or true
 	 */
 	public boolean open() {
-		if (getTime() >= closingTime) { // 10 placeholder, 10 står för tiden när butiken stänger
+		if (getTime() > closingTime) { // 10 placeholder, 10 står för tiden när butiken stänger
 			return false;
 		} else {
 			return true;

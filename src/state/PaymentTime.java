@@ -26,7 +26,8 @@ public class PaymentTime {
 //	}
 	
 	public PaymentTime(double deltaLower, double deltaHigher, int seed) {
-		this.deltaH = deltaLower;
+		this.deltaH = deltaHigher;
+		this.deltaL = deltaLower;
 		this.seed = seed;
 		this.x = new UniformRandomStream(this.deltaL, this.deltaH, this.seed);
 	}

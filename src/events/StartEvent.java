@@ -26,6 +26,7 @@ public class StartEvent extends Event{
 	@Override
 	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
 		state.setCurrentEvent("Start");
+		state.notifyObserver();
 		eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), state.getCS().newCustomer()));
 	}
 }

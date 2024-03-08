@@ -29,13 +29,15 @@ public class PickUpEvent extends Event {
 	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
 		state.setCurrentCustomerID(customer.getId());
 		state.setCurrentEvent("Plock");
+		state.updateFreeCashierTime();
+		state.updateTotalQueueTime();
+		state.notifyObserver();
 		if (state.getFreeCashiers()>0) {
 			state.setFreeCashiers(state.getFreeCashiers()-1);
 			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(), customer));		
 		}else {
 			state.addFIFO(customer);
 		}
-		state.updateFreeCashierTime();
-		state.updateTotalQueueTime();
+		
 	}
 }

@@ -61,14 +61,19 @@ public class SuperMarketView extends SimView {
 			lastPaymentTime=state.getTime();
 			break;
 			
-			case "Stänger": System.out.print("      ");
+			case "Stänger": System.out.print("   ");
 			break;
 			
 			case "Stop": System.out.print("\n");
 			return;
 		}
-			
-		System.out.print(String.valueOf(state.getCurrentCustomerID()) + "  ");								//kund nummer
+		
+		if (state.getCurrentEvent() == "Stänger") {
+			System.out.print(("---") + "  ");
+		} else {
+			System.out.print(String.valueOf(state.getCurrentCustomerID()) + "  ");								//kund nummer
+		}
+		
 		
 		if(state.open()) {
 			System.out.print("Ö    ");
