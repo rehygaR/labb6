@@ -26,6 +26,9 @@ public class EventQueue {
 	 */
 	public Event nextEvent() {
 		sortEvents();
+		for(Event event:queue) {
+			System.out.println(event.getEventTime());
+		}
 		Event event=queue.get(0);
 		queue.remove(0);
 		return event;

@@ -78,13 +78,13 @@ public class SuperMarketView extends SimView {
 		}
 		
 		System.out.print(String.valueOf(state.getFreeCashiers()) + "   ");		//antal lediga kassor
-		state.updateFreeCashierTime();
+		
 		System.out.print(String.valueOf(df.format(state.getFreeCashierTime())) + "   ");		//tid då kassorna varit lediga
 		System.out.print(String.valueOf(state.getCurrentCustomers()) + "   ");	//antalet kunder i butiken
 		System.out.print(String.valueOf(state.getTotalPayingCustomers()) + "    ");//antal kunder som handlat
 		System.out.print(String.valueOf(state.getMissedCustomers()) + "      ");		//antal missade  kunder
 		System.out.print(String.valueOf(state.getTotalQueuedCustomers()) + "   ");		//antal som varit i FIFO kön
-		state.updateTotalQueueTime();
+		
 		System.out.print(String.valueOf(df.format(state.getTotalQueueTime()))+ "      ");			//total kötid
 		System.out.print(String.valueOf(state.getQueuedCustomers()) + "  ");		//antal i kö just nu
 		System.out.println(state.getStringQueue());					//vilka kunder som är i kön (getStringQueue ska returnera en sträng och inte en ArrayList

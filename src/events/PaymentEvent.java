@@ -24,6 +24,7 @@ public class PaymentEvent extends Event{
 	 */
 	@Override
     public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
+		
     	state.setCurrentCustomerID(this.customer.getId());
 		state.setCurrentEvent("Betalning");
 		state.minusCurrentCustomers();
@@ -34,5 +35,7 @@ public class PaymentEvent extends Event{
 		}else {
 			state.setFreeCashiers(state.getFreeCashiers()+1);
 		}
+		state.updateFreeCashierTime();
+		state.updateTotalQueueTime();
     }
 }

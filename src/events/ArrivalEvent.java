@@ -28,10 +28,13 @@ public class ArrivalEvent extends Event {
 		
 		state.setCurrentCustomerID(customer.getId());
 		state.setCurrentEvent("Ankomst");
+		state.updateFreeCashierTime();
+		state.updateTotalQueueTime();
 		if (state.open()==false) {
 			return;
 		}else if(state.getCurrentCustomers() == state.getMaxNumOfCustomers()){
 			state.setMissedCustomers(); //Lägger till en missad kund.
+			eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), state.getCS().newCustomer()));//Skapar en framtida ankomsthändelse.
 		}else {
 			state.addCurrrentCustomers();
 			eventQueue.addEvent(new PickUpEvent(state.getPickupTime(), customer)); //Skapar en framtida upplockningshändelse.

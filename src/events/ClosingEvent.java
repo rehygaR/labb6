@@ -19,6 +19,8 @@ public class ClosingEvent extends Event {
 	 */
 	@Override
 	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
+		state.updateFreeCashierTime();
+		state.updateTotalQueueTime();
 		state.setCurrentEvent("Stänger");
     }
 }

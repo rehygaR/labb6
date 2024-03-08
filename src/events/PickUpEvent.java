@@ -35,5 +35,7 @@ public class PickUpEvent extends Event {
 		}else {
 			state.addFIFO(customer);
 		}
+		state.updateFreeCashierTime();
+		state.updateTotalQueueTime();
 	}
 }
