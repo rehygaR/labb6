@@ -30,17 +30,7 @@ public class SupermarketState extends SimState {
 	private double closingTime;
 	private double stopTime;
 	private int customerID;
-	private double arrivalLambda;
-	private double pickupL;
-	private double pickupH;
-	private double paymentL;
-	private double paymentH;
 	private String currentEvent;
-	private int seed;
-	
-	//private double currentTime; // Nuvarande tiden för hela simuleringen. Sluta räknas efter att sista kunden betalat.
-	
-	//protected double currentTimeCustomer = 0; // Nuvarande tiden för en specifik kund. Sluta räknas efter att sista kunden betalat.
 	
 	private ArrivalTime arrive;// = new ArrivalTime(4.0); // Ankomsttidskälla, 4.0 bytsut mot det man anger i runSim
 	private PickupTime pickup;// = new PickupTime(0.5,1.0); // Plocktidskälla, parametrar byts ut mot de angivna i runSim ( variabler)
@@ -76,7 +66,6 @@ public class SupermarketState extends SimState {
 		this.closingTime = closingTime;
 		this.stopTime=stopTime;
 		this.customerID = 0;
-		this.arrivalLambda = arrivalLambda;
 		this.currentEvent = "";
 		this.CS=new CustomerSource();
 		
@@ -115,12 +104,15 @@ public class SupermarketState extends SimState {
 	}
 	
 	/**
-	 * Plussar på 1 till antalet kunder 
+	 * Plussar på 1 till antalet kunder, görs då en kund ankommer till butken
 	 */
 	public void addCurrrentCustomers() {
 		this.numOfCustomers += 1;
 	}
 	
+	/**
+	 * Tar bort en kund från butiken, görs då hen har betalat (och då gått ut)
+	 */
 	public void minusCurrentCustomers() {
 		this.numOfCustomers -= 1;
 	}
@@ -150,13 +142,16 @@ public class SupermarketState extends SimState {
 	}
 	
 	/**
-	 * Ger den lediga tiden kassorna har
-	 * @return sumTimeFreeCheckouts
+	 * Uppdaterar den tiden som kassorna varit lediga
 	 */
 	public void updateFreeCashierTime() {
 		this.sumTimeFreeCheckouts += (double) getFreeCashiers() * (getTime()-getPreviousTime());
 	}
 	
+	/**
+	 * Ger tiden som kassorna varit lediga
+	 * @return
+	 */
 	public double getFreeCashierTime() {
 		return this.sumTimeFreeCheckouts;
 	}
@@ -169,7 +164,6 @@ public class SupermarketState extends SimState {
 		return this.numCustomersLeaving;
 	}
 	
-	
 	/**
 	 * Lägger till 1 på antal kunder som betalat (som också då lämnar butiken)
 	 */
@@ -177,11 +171,13 @@ public class SupermarketState extends SimState {
 		this.numCustomersLeaving += 1;
 	}
 
-	
+	/**
+	 * Ger de totala antalet kunder i kön
+	 * @return totalQueuedCustomers
+	 */
 	public int getTotalQueuedCustomers() {
 		return this.totalQueuedCustomers;
 	}
-	
 	
 	/**
 	 * Ger kö-tiden
@@ -190,6 +186,11 @@ public class SupermarketState extends SimState {
 	public void updateTotalQueueTime() {
 		this.sumTimeCustomersInQueue += (double) queue.size() * (getTime()-getPreviousTime());
 	}
+	
+	/**
+	 * Ger den totala kö tiden
+	 * @return sumTimeCustomersInQueue
+	 */
 	public double getTotalQueueTime() {
 		return this.sumTimeCustomersInQueue;
 	}
@@ -226,30 +227,6 @@ public class SupermarketState extends SimState {
 	}
 	
 	/**
-	 * Ger den genomsnittliga lediga tiden som kassorna har
-	 * @return sumTimeFreeCheckouts
-	 */
-//	public double getAverageFreeCashierTime() { // Returnerar den tid i snitt som kassor är lediga FEL!!!
-//		return getFreeCashierTime()/numCheckouts;
-//	}
-	
-	/**
-	 * Ger den genomsnittliga kö tiden för kunderna
-	 * @return sumTimeCustomersInQueue
-	 */
-//	public double getAverageQueueTime() { // Returnerar den tid i snitt som kunder får köa FEL!!!
-//		return getQueueTime()/numCustomersLeaving;
-//	}
-	
-	/**
-	 * Ger den procentuella tiden som kassorna varit lediga
-	 * @return getFreeCashierTime() / getTime()
-	 */
-//	public double getFreeCashierPercentage() {
-//		return getFreeCashierTime() / getTime();
-//	}
-	
-	/**
 	 * Ger den tid där butiken ska stänga
 	 * @return closingTime
 	 */
@@ -257,13 +234,17 @@ public class SupermarketState extends SimState {
 		return this.closingTime;
 	}
 	
-	
+	/**
+	 * Ger den stängningstiden då butiken ska stänga (INTE då simulatorn ska sluta)
+	 * @return stopTime
+	 */
 	public double getStopTime() {
 		return this.stopTime;
 	}
+	
 	/**
 	 * Ger tiden för nästa händelse
-	 * @return new ArrivalTime(arrivalLambda).getNextTime(getTime())
+	 * @return arrive.getNexTime(getTime())
 	 */
 	public double getArrivalTime() { // Ger ett nytt slumptal på AnkomstTid
 		return arrive.getNextTime(getTime());
@@ -271,7 +252,7 @@ public class SupermarketState extends SimState {
 	
 	/**
 	 * Ger tiden för nästa händelse
-	 * @return new PickupTime(pickupL, pickupH).getNextTime(getTime())
+	 * @return pickup.getNextTime(getTime());
 	 */
 	public double getPickupTime() {
 		return pickup.getNextTime(getTime());
@@ -279,7 +260,7 @@ public class SupermarketState extends SimState {
 	
 	/**
 	 * Ger tiden för nästa händelse
-	 * @return new PickupTime(paymentL, paymentH).getNextTime(getTime())
+	 * @return payment.getNextTime(getTime());
 	 */
 	public double getPaymentTime() {
 		return payment.getNextTime(getTime());
@@ -293,6 +274,10 @@ public class SupermarketState extends SimState {
 		return this.customerID;
 	}
 	
+	/**
+	 * Sätter ett id för kunden
+	 * @param id
+	 */
 	public void setCurrentCustomerID(int id) {
 		this.customerID = id;
 	}
@@ -344,66 +329,13 @@ public class SupermarketState extends SimState {
 		this.queue.isEmpty();
 	}
 	
+	/**
+	 * Ger kundkällan, där man kan skapa nya kunder från
+	 * @return CS
+	 */
 	public CustomerSource getCS() {
 		return CS;
 	}
 	
-	
-//	public addTime(Event event) { // Lägger till tid beroende på vilket event
-//		
-//		if (event == ArrivalEvent) {
-//			this.currentTime = arrive.getNextTime(currentTime);
-//		} else if (event == ClosingEvent) {
-//			this.currentTime = 10.0; // Tiden som butiken ska stänga
-//		} else if (event == PaymentEvent) {								Görs i den enskilda eventsen
-//			this.currentTime = payment.getNextTime(currentTime);
-//		} else if (event == PickUpEvent) {
-//			this.currentTime = pickup.getNextTime(currentTime);
-//		} else if (event == StartEvent) {
-//			this.currentTime = 0.0;
-//		} else if (event == StopEvent) {
-//			this.currentTime = 999;// Tiden då simulatorn ska stänga av
-//		}
-//		
-//	}
-	
-//	@Override
-//	public double getTime() { // Aktuella tiden som simulatorn hunnit i det tillfälle som metoden anropas.
-//		// TODO Auto-generated method stub
-//		
-//		/*
-//		 * Hur ska jag koda dessa?
-//		 * Typ currentTime = currentTime + event.time();
-//		 * notifyObservers();
-//		 * setChanged();									Görs i generella
-//		 * if (sistaKundLämnat == true) {
-//		 * 		return currentTime; ?
-//		 * }
-//		 */
-//		
-//		return currentTime;
-//	}
-
-//	@Override
-//	public boolean simBreak() { // Om simuleringen ska avslutas så sätts denna till true.
-//		// TODO Auto-generated method stub
-//		
-//		/*
-//		 * Hur ska jag koda dessa?
-//		 * if (simEnd == true) {
-//		 * 		return true;
-//		 * 		notifyObservers();
-//		 * 		setChanged();								Görs i generella
-//		 * } else {
-//		 * 		notifyObservers();
-//		 * 		setChanged();
-//		 * 		return false; ?
-//		 * }
-//		 */
-//		
-//		notifyObservers();
-//		setChanged();
-//		return false;
-//	}
 	
 }

@@ -22,6 +22,9 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	private double previousTime=0;
 	private boolean simActive;
 	
+	/**
+	 * Konstruktor, skapar en instans av SimState
+	 */
 	public SimState() {
 		this.simActive = true;
 		this.currentTime = 0;
@@ -35,39 +38,47 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 		return currentTime;
 	}
 	
+	/**
+	 * Ger den tidigare tiden
+	 * @return previousTime
+	 */
 	public double getPreviousTime() {
 		return previousTime;
 	}
 	
+	/**
+	 * Sätter tiden till den nya aktuella tiden, samt lägger till den gamla tiden till i variabeln previousTime, vilket används till beräkningar
+	 * @param newCurrentTime
+	 */
 	public void setTime(double newCurrentTime) {
 		previousTime=currentTime;
 		currentTime=newCurrentTime;
 	}
+	
 	/*
-	 * Returnar om simulatorn ska fortsätta, dvs om denna ger "false" fortsätter simulatorn. Fungerar som
+	 * Returnar om simulatorn ska fortsätta, dvs denna ger variabeln simActive = "false" och avslutar simulatorn. Fungerar som
 	 * en nödbroms
 	 */
 	public void simBreak() {
-//		if (getTime() == 999) { // Vid tiden 999 ska simulatorn avslutas
-//			notifyObservers();
-//			setChanged();
-//			return true;
-//		} else {
-//			notifyObservers();
-//			setChanged();
-//			return false;
-//		}
-		setChanged();
-		notifyObservers();
+
 		this.simActive = false;
-		
-		
+
 	}
+	
+	/**
+	 * Ger true eller false beroende om simulatorn ska fortsätta eller avslutas
+	 * @return true eller false
+	 */
 	public boolean getSimActive() {
 		return this.simActive;
 	}
 	
+	/**
+	 * Uppdateringsmetod, används för att uppdatera observerare att något hänt med tillståndet.
+	 * Tillkallas i de specifika eventsen.
+	 */
 	public void notifyObserver() {
+		setChanged();
 		notifyObservers();
 	}
 	
