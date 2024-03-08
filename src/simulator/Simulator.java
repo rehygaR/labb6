@@ -13,32 +13,14 @@ public class Simulator {
 	
 	
 	
-	public void run(SupermarketState state, EventQueue eventQueue, SimView view, boolean print) {
-		int x = 0;
-		
-		if (print) {
-			view.printStart();
-		}
-		
+	public void run(SupermarketState state, EventQueue eventQueue) {
 		
 		while (state.getSimActive()) {
 			eventQueue.nextEvent().exeEvent(state, eventQueue);
-			//eventQueue.nextEvent().exeEvent(state);
-			state.notifyObserver();
 			
-			if (print) {
-				view.printEvent();
-			}
-			
-//			if (x > 10) { // debug
-//				break;
-//			}
-//			x++;
 		}
 		
-		if (print) {
-			view.printResult();
-		}
+		
 		
 	}
 

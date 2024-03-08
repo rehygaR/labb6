@@ -24,11 +24,11 @@ public class RunSim {
 		eventQueue.addEvent(new ClosingEvent(END_TIME)); //
 		eventQueue.addEvent(new StopEvent(STOP_TIME)); //StopEvent måste ha double argument
 		
-		SuperMarketView view = new SuperMarketView(state);
+		SuperMarketView view = new SuperMarketView(state, true);
 		
 
 		Simulator simulator = new Simulator();
-		simulator.run(state, eventQueue, view, true);
+		simulator.run(state, eventQueue);
 	}
 
 }

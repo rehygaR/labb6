@@ -130,9 +130,8 @@ public class FIFO {
 				str = str.concat(String.valueOf(((Customer) queue.get(i)).getId()));
 				
 			}else {
-				str = str.concat(String.valueOf(((Customer) queue.get(i)).getId()) + ","); // I str läggs det till så att stringen =
-				// "Queue: (2) " om det bara är ett
-				// element i queue
+				str = str.concat(String.valueOf(((Customer) queue.get(i)).getId()) + ", "); // I str läggs det till så att stringen =
+				
 			}
 			
 			
@@ -141,9 +140,7 @@ public class FIFO {
 
 		return str; // returnar str
 
-		/*
-		 * Returnern blir i detta format: Queue: (2) (4) (3) (null) etc
-		 */
+		
 	}
 
 }

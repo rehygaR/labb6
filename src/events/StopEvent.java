@@ -22,5 +22,6 @@ public class StopEvent extends Event{
 		state.setCurrentEvent("Stop");
 		state.notifyObserver();
 		state.simBreak();
+		state.notifyObserver();
 	}
 }

@@ -38,11 +38,11 @@ public class Optimize {
 		int test2 = metod2(M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME, SEED);
 		
-		System.out.println(test2);
+		System.out.println("Optimalt antal kassor för test 2: " + test2);
 		
 		int test3 = metod3(SEED);
 		
-		System.out.println(test3);
+		System.out.println("Optimalt antal kassor för test 3: " + test3);
 		}
 	
 		
@@ -63,11 +63,11 @@ public class Optimize {
 		eventQueue.addEvent(new ClosingEvent(END_TIME)); //
 		eventQueue.addEvent(new StopEvent(STOP_TIME)); //StopEvent måste ha double argument
 		
-		SuperMarketView view = new SuperMarketView(state);
+		SuperMarketView view = new SuperMarketView(state, false);
 		
 
 		Simulator simulator = new Simulator();
-		simulator.run(state, eventQueue, view, false);
+		simulator.run(state, eventQueue);
 		
 		return state;
 		

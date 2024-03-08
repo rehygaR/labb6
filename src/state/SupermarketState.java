@@ -145,7 +145,7 @@ public class SupermarketState extends SimState {
 	 * Uppdaterar den tiden som kassorna varit lediga
 	 */
 	public void updateFreeCashierTime() {
-		this.sumTimeFreeCheckouts += (double) getFreeCashiers() * (getTime()-getPreviousTime());
+		this.sumTimeFreeCheckouts += getFreeCashiers() * (getTime()-getPreviousTime());
 	}
 	
 	/**

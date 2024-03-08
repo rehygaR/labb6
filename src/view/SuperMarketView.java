@@ -4,6 +4,7 @@ package view;
 
 
 import java.text.DecimalFormat;
+import java.util.Observable;
 import java.util.Observer;
 import events.Event;
 import state.SupermarketState;
@@ -17,10 +18,14 @@ public class SuperMarketView extends SimView {
 	private DecimalFormat df = new DecimalFormat("0.00");
 	private SupermarketState state;
 	private double lastPaymentTime;
+	private int updateNr = 0;
 	
-	public SuperMarketView(SupermarketState state) {
+	public SuperMarketView(SupermarketState state, boolean print) {
 		this.state = state;
-		state.addObserver(this);
+		if (print) {
+			state.addObserver(this);
+		}
+		
 	}
 
 	@Override
@@ -33,7 +38,7 @@ public class SuperMarketView extends SimView {
 		System.out.println("Betaltider, [K_min..Kmax]: " + "[" + String.valueOf(LOW_PAYMENT_TIME) + ".." + String.valueOf(HIGH_PAYMENT_TIME) + "]");
 		System.out.println("Frö, f...................: " + String.valueOf(SEED));
 		
-		System.out.println("FÖRLOPP\n=======");
+		System.out.println("\nFÖRLOPP\n=======");
 		System.out.println("   Tid Händelse  Kund  ?  led   ledT   I   $   :-(   köat   köT   köar  [Kassakö..]");
 	}
 	
@@ -41,9 +46,9 @@ public class SuperMarketView extends SimView {
 	@Override
 	public void printEvent() { 			// event ska vara EventQueue eller Event? Hur får vi vilket event i String format?
 		if(state.getCurrentEvent()!="Stop") {
-			System.out.print("  " + String.valueOf(df.format(state.getTime())) + " ");				//tid
+			System.out.print(customFormat(String.valueOf(df.format(state.getTime())), 6) + " ");				//tid
 		}else {
-			System.out.print("  " + String.valueOf(df.format(state.getStopTime())) + " ");
+			System.out.print(customFormat(String.valueOf(df.format(state.getStopTime())), 6) + " ");
 		}
 		System.out.print(state.getCurrentEvent());										//händelsetyp
 		switch(state.getCurrentEvent()) {													//switch sats för att ge rätt inkrement beroende på vilken typ av händelse det är
@@ -51,17 +56,10 @@ public class SuperMarketView extends SimView {
 			
 			return;
 			
-			case "Ankomst": System.out.print("      ");
+			case "Ankomst": System.out.print("  ");
 			break;
 			
-			case "Plock": System.out.print("        ");
-			break;
-			
-			case "Betalning": System.out.print("    ");
-			lastPaymentTime=state.getTime();
-			break;
-			
-			case "Stänger": System.out.print("   ");
+			case "Plock": System.out.print("    ");
 			break;
 			
 			case "Stop": System.out.print("\n");
@@ -69,30 +67,31 @@ public class SuperMarketView extends SimView {
 		}
 		
 		if (state.getCurrentEvent() == "Stänger") {
-			System.out.print(("---") + "  ");
+			System.out.print(("    ---  "));
 		} else {
-			System.out.print(String.valueOf(state.getCurrentCustomerID()) + "  ");								//kund nummer
+			System.out.print(customFormat(String.valueOf(state.getCurrentCustomerID()), 5) + "  ");								//kund nummer
 		}
 		
 		
 		if(state.open()) {
-			System.out.print("Ö    ");
+			System.out.print("Ö");
 		}
 		else {
-			System.out.print("S    ");
+			System.out.print("S");
 		}
 		
-		System.out.print(String.valueOf(state.getFreeCashiers()) + "   ");		//antal lediga kassor
+		System.out.print(customFormat(String.valueOf(state.getFreeCashiers()), 5));		//antal lediga kassor
 		
-		System.out.print(String.valueOf(df.format(state.getFreeCashierTime())) + "   ");		//tid då kassorna varit lediga
-		System.out.print(String.valueOf(state.getCurrentCustomers()) + "   ");	//antalet kunder i butiken
-		System.out.print(String.valueOf(state.getTotalPayingCustomers()) + "    ");//antal kunder som handlat
-		System.out.print(String.valueOf(state.getMissedCustomers()) + "      ");		//antal missade  kunder
-		System.out.print(String.valueOf(state.getTotalQueuedCustomers()) + "   ");		//antal som varit i FIFO kön
-		
-		System.out.print(String.valueOf(df.format(state.getTotalQueueTime()))+ "      ");			//total kötid
-		System.out.print(String.valueOf(state.getQueuedCustomers()) + "  ");		//antal i kö just nu
+		System.out.print(customFormat(String.valueOf(df.format(state.getFreeCashierTime())),7));		//tid då kassorna varit lediga
+		System.out.print(customFormat(String.valueOf(state.getCurrentCustomers()), 4));	//antalet kunder i butiken
+		System.out.print(customFormat(String.valueOf(state.getTotalPayingCustomers()), 4));//antal kunder som handlat
+		System.out.print(customFormat(String.valueOf(state.getMissedCustomers()), 5));		//antal missade  kunder
+		System.out.print(customFormat(String.valueOf(state.getTotalQueuedCustomers()), 7));		//antal som varit i FIFO kön
+		System.out.print(customFormat(String.valueOf(df.format(state.getTotalQueueTime())), 7));			//total kötid
+		System.out.print(customFormat(String.valueOf(state.getQueuedCustomers()), 7) + "  ");		//antal i kö just nu
 		System.out.println(state.getStringQueue());					//vilka kunder som är i kön (getStringQueue ska returnera en sträng och inte en ArrayList
+		
+		lastPaymentTime = state.getTime();
 	}
 	
 	@Override
@@ -100,12 +99,12 @@ public class SuperMarketView extends SimView {
 //		System.out.print("  " + String.valueOf(df.format(state.getTime())));				//tid
 //		System.out.print(" Stop\n");								
 		
-		System.out.println("RESULTAT\n========\n");
-		System.out.println("1) Av " + String.valueOf((df.format(state.getTotalPayingCustomers() + state.getMissedCustomers()))) 
+		System.out.println("\nRESULTAT\n========\n");
+		System.out.println("1) Av " + String.valueOf((state.getTotalPayingCustomers() + state.getMissedCustomers())) 
 				+ " kunder handlade " + String.valueOf(state.getTotalPayingCustomers()) + " medan "
 				+ String.valueOf(state.getMissedCustomers()) + " missades.\n");
 		
-		System.out.println("2) Total tid " + String.valueOf(df.format(state.getNumCheckouts())) + " kassor varit lediga: " + String.valueOf(df.format(state.getFreeCashierTime())) 
+		System.out.println("2) Total tid " + String.valueOf(state.getNumCheckouts()) + " kassor varit lediga: " + String.valueOf(df.format(state.getFreeCashierTime())) 
 				+ " te.\nGenomsnittlig ledig kassatid: " + String.valueOf(df.format(state.getFreeCashierTime()/state.getNumCheckouts())) 
 				+ " te (dvs " + String.valueOf(df.format(state.getFreeCashierTime()/state.getNumCheckouts()/lastPaymentTime*100)) + "% av tiden från öppning tills sista kunden betalat).\n");
 		
@@ -114,6 +113,40 @@ public class SuperMarketView extends SimView {
 				+ " te.\nGenomsnittlig kötid: " + String.valueOf(df.format(state.getTotalQueueTime()/state.getTotalQueuedCustomers())) + " te.");
 		
 	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		if(updateNr == 0) {
+			printStart();
+		}
+		if (!state.getSimActive()) {
+			printResult();
+		}
+		else {
+			printEvent();
+		}
+		
+		
+		updateNr++;
+	}
+	
+	
+	private String customFormat(String form, int spacing) {
+		String newString = "";
+		int copyFrom = spacing - form.length();
+		
+		for (int i = 0; i < copyFrom; i++) {
+			
+			newString = newString + " ";
+			
+		}
+		
+		return newString + form;
+		 
+		
+		
+	}
+	
 	
 	/*
 	 * boolean open()	returnerar true om öppet
