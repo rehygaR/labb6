@@ -11,34 +11,34 @@ import state.ArrivalTime;
  * ny kund och om det inte är fullt släpps den ankomna kunden in och en framtida upplockningshändelse skapas för den. 
  * Om snabbköpet är stängt händer ingenting med den ankomna kunden och ingen ny ankomsthändelse skapas.
  */
-public class ArrivalEvent extends Event {
-	Customer customer;
+public class ArrivalEvent extends SupermarketEvent {
 	
 	/**
-	 * Konstruktorn håller reda på händelsens tid och håller reda på vilken kund som utför händelsen.
+	 * Konstruktorn håller reda på händelsens tid och vilken kund som utför händelsen.
 	 * @param eventTime
 	 * @param customer
 	 */
 	public ArrivalEvent(double eventTime, Customer customer) {
-		super(eventTime);
-		this.customer=customer;
+		super(eventTime,customer);
 	}
 	
 	/**
-	 * Överskriver den generella händelsens SpecificExe(SupermarketState state, EventQueue eventQueue) metod.
-	 * Ändrar tillståndet och hanterar därefter den ankomna kunden och skapar en ny ankomsthändelse om snabbköpet är öppet.
+	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
+	 * @return "Ankomst"
+	 */
+	@Override
+	public String getSpecificEvent() {
+		return "Ankomst";
+	}
+	
+	/**
+	 * Överskriver den generella händelsens SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) metod.
+	 * Hanterar den ankomna kunden och skapar en ny ankomsthändelse om snabbköpet är öppet.
 	 * @param state
 	 * @param eventQueue
 	 */
 	@Override
-	public void SpecificExe (SupermarketState state, EventQueue eventQueue) {
-		
-		state.setCurrentCustomerID(customer.getId());
-		state.setCurrentEvent("Ankomst");
-		state.updateFreeCashierTime();
-		state.updateTotalQueueTime();
-		state.notifyObserver();
-		
+	public void SupermarketSpecificExe (SupermarketState state, EventQueue eventQueue) {
 		if (state.open()==false) {
 			return;
 		}else if(state.getCurrentCustomers() == state.getMaxNumOfCustomers()){

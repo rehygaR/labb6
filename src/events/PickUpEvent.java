@@ -12,8 +12,7 @@ import state.SupermarketState;
  * Den specifika upplockningshändelsen. Om det finns en ledig kassa får kunden gå och betala direkt annars ställs kunden i 
  * kassakön.
  */
-public class PickUpEvent extends Event {
-	Customer customer;
+public class PickUpEvent extends SupermarketEvent {
 	
 	/**
 	 * Konstruktorn håller reda på tiden händelsen sker och vilken kund som utför händelsen.
@@ -21,24 +20,27 @@ public class PickUpEvent extends Event {
 	 * @param customer
 	 */
 	public PickUpEvent(double eventTime, Customer customer) {
-		super(eventTime);
-		this.customer=customer;
+		super(eventTime,customer);
 	}
 	
 	/**
-	 * Överskriver den generella händelsens SpecificExe(SupermarketState state, EventQueue eventQueue) metod.
+	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
+	 * @return "Plock"
+	 */
+	@Override
+	public String getSpecificEvent() {
+		return "Plock";
+	}
+	
+	/**
+	 * Överskriver den generella händelsens SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) metod.
 	 * Ändrar tillståndet och skapar en framtida betalningshändelse för kunden om det finns lediga kassor, 
 	 * annars placeras kunden i kassakön.
 	 * @param state
 	 * @param eventQueue
 	 */
 	@Override
-	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
-		state.setCurrentCustomerID(customer.getId());
-		state.setCurrentEvent("Plock");
-		state.updateFreeCashierTime();
-		state.updateTotalQueueTime();
-		state.notifyObserver();
+	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {
 		if (state.getFreeCashiers()>0) {
 			state.setFreeCashiers(state.getFreeCashiers()-1);
 			eventQueue.addEvent(new PaymentEvent(state.getPaymentTime(), customer));		

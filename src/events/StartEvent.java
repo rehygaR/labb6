@@ -10,7 +10,7 @@ import state.SimState;
 /**
  * Den specifika starthändelsen. Syftet är att starta upp kedjan med händelser genom att skapa en framtida ankomsthändelse.
  */
-public class StartEvent extends Event{
+public class StartEvent extends SupermarketEvent{
 	/**
 	 * Konstruktorn sätter händelsens tid till 0.
 	 */
@@ -19,15 +19,21 @@ public class StartEvent extends Event{
 	}
 	
 	/**
-	 * Överskriver den generella händelsens SpecificExe(SupermarketState state, EventQueue eventQueue) metod.
-	 * Ändrar tillståndet och lägger till en ankomsthändelse till EventQueue.
+	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
+	 * @return "Start"
+	 */
+	@Override
+	public String getSpecificEvent() {
+		return "Start";
+	}
+	/**
+	 * Överskriver den generella händelsens SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) metod.
+	 * Lägger till en ankomsthändelse till EventQueue.
 	 * @param state
 	 * @param eventQueue
 	 */
 	@Override
-	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
-		state.setCurrentEvent("Start");
-		state.notifyObserver();
+	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {
 		eventQueue.addEvent(new ArrivalEvent(state.getArrivalTime(), state.getCS().newCustomer()));
 	}
 }

@@ -7,7 +7,7 @@ import state.SupermarketState;
 /**
  * Den specifika stängningshändelsen. Uppdaterar tillståndet till stängning.
  */
-public class ClosingEvent extends Event {
+public class ClosingEvent extends SupermarketEvent {
 	/**
 	 * Konstruktorn håller reda på händelsens tid.
 	 * @param eventTime
@@ -17,16 +17,22 @@ public class ClosingEvent extends Event {
 	}
 	
 	/**
-	 * Överskriver den generella händelsens SpecificExe(SupermarketState state, EventQueue eventQueue) metod.
-	 * Uppdaterar tillståndet.
+	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
+	 * @return "Stänger"
+	 */
+	@Override
+	public String getSpecificEvent() {
+		return "Stänger";
+	}
+	
+	/**
+	 * Överskriver den generella händelsens SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) metod.
+	 * I detta fall innehåller den ingenting eftersom alla specifika delar finns i överklassen SupermarketEvent.
 	 * @param state
 	 * @param eventQueue
 	 */
 	@Override
-	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
-		state.setCurrentEvent("Stänger");
-		state.updateFreeCashierTime();
-		state.updateTotalQueueTime();
-		state.notifyObserver();
+	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {
+		
     }
 }
