@@ -13,6 +13,15 @@ import events.EventQueue;
 
 import static random.K.*;
 
+/**
+ * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
+ */
+
+
+/**
+ * En klass för den specifika SupermarketView vars uppgift är att observera staten och skriva utskrifter
+ * då staten ändras.
+ */
 public class SuperMarketView extends SimView {
 	
 	private DecimalFormat df = new DecimalFormat("0.00");
@@ -20,6 +29,14 @@ public class SuperMarketView extends SimView {
 	private double lastPaymentTime;
 	private int updateNr = 0;
 	
+	
+	/**
+	 * 
+	 * @param state
+	 * @param print
+	 * Konstruktor som ser till att view instansen observerar den state som skickats in
+	 * har även en print boolean som skickas med beroende om man vill ha utskrifter eller inte
+	 */
 	public SuperMarketView(SupermarketState state, boolean print) {
 		this.state = state;
 		if (print) {
@@ -28,6 +45,10 @@ public class SuperMarketView extends SimView {
 		
 	}
 
+	
+	/**
+	 * Printar simulatorns parametrar
+	 */
 	@Override
 	public void printStart() {
 		System.out.println("PARAMETRAR \n ==========");
@@ -42,7 +63,9 @@ public class SuperMarketView extends SimView {
 		System.out.println("   Tid Händelse  Kund  ?  led   ledT   I   $   :-(   köat   köT   köar  [Kassakö..]");
 	}
 	
-	
+	/**
+	 * Printar det specifika eventet
+	 */
 	@Override
 	public void printEvent() { 			// event ska vara EventQueue eller Event? Hur får vi vilket event i String format?
 		if(state.getCurrentEvent()!="Stop") {
@@ -94,6 +117,10 @@ public class SuperMarketView extends SimView {
 		lastPaymentTime = state.getTime();
 	}
 	
+	
+	/**
+	 * Printar de slutresultat av simulationen
+	 */
 	@Override
 	public void printResult() {
 //		System.out.print("  " + String.valueOf(df.format(state.getTime())));				//tid
@@ -114,6 +141,9 @@ public class SuperMarketView extends SimView {
 		
 	}
 	
+	/**
+	 * En uppdate metod som kallas då state notifierar observatören
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		if(updateNr == 0) {

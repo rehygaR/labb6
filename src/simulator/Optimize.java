@@ -11,8 +11,19 @@ import events.StopEvent;
 import state.SupermarketState;
 import view.SuperMarketView;
 
+/**
+ * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
+ */
+
+/**
+ * Klass vars syfte är att optimera simulatorns parametrar
+ */
 public class Optimize {
 
+	/**
+	 * Main metod som kör klassens optimerings metoder
+	 * @param args
+	 */
 	public static void main(String[] args) {
 //		SupermarketState state = new SupermarketState(1, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 //				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
@@ -51,7 +62,7 @@ public class Optimize {
 
 	
 	
-	public static SupermarketState metod1(int N, int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
+	private static SupermarketState metod1(int N, int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
 			double LOW_PAYMENT_TIME, double HIGH_PAYMENT_TIME, double END_TIME, double STOP_TIME, int SEED) {
 		
 		SupermarketState state = new SupermarketState(N, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
@@ -86,7 +97,7 @@ public class Optimize {
 	 * @param SEED
 	 * @return Nopt
 	 */
-	public static int metod2(int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
+	private static int metod2(int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
 			double LOW_PAYMENT_TIME, double HIGH_PAYMENT_TIME, double END_TIME, double STOP_TIME, int SEED) {
 			
 		int Nopt = 0;
@@ -109,7 +120,7 @@ public class Optimize {
 		return Nopt;
 	}
 	
-	public static int metod3(int SEED) {
+	private static int metod3(int SEED) {
 		
 		Random rnd = new Random(SEED);
 		int Nopt3 = 0;
@@ -134,16 +145,4 @@ public class Optimize {
 
 }
 	
-//	public static double recRaiseHalf(double x, int k) {
-//	counter2 = counter2 + 1;
-//
-//	int y = (int) Math.floor(k / 2);
-//
-//	if (k == 0) {
-//		return 1.0;
-//	} else if (k % 2 == 0) {
-//		return recRaiseHalf(x * x, y);
-//	} else {
-//		return x * recRaiseHalf(x * x, y);
-//	}
-//}
+

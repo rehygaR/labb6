@@ -8,10 +8,22 @@ import events.StopEvent;
 import state.SupermarketState;
 import view.SuperMarketView;
 
+/**
+ * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
+ */
+
+
+/**
+ * Klass som "sätter igång" simulatorn med givna parametrar
+ */
 public class RunSim {
 	
 	
 
+	/**
+	 * Main metod som skapar en state, eventqueue med 3 events och en vy, sedan körs simulatorn 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		int N = 2;
 		

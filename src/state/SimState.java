@@ -8,7 +8,7 @@ import java.util.Observer;
  */
 
 /*
- * Ett interface för den generella simulatorn. Här återfinns två metoder,
+ * En klass för den generella simulatorn. Här återfinns två metoder,
  * getTime() och simBreak() för att hålla reda på simulatorns nuvarande
  * tillstånd. När simState implementeras, ska klassen vara observable.
  */
