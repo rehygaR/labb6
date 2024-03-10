@@ -6,22 +6,29 @@ import state.ArrivalTime;
 /**
  * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
  */
-/*
- * Den specifika ankomsthändelsen. Innehåller endast konstruktor och SpecificExe (SupermarketState state, EventQueue eventQueue)
- * som först påverkar tillståndet och därefter lägger till en upplockningshändelse för den ankomna kunden och en ny ankomsthändelse
- * i EventQueue.
+/**
+ * Den specifika ankomsthändelsen. Så länge snabbköpet är öppet skapas för varje ankommen kund en ny ankomsthändelse för en
+ * ny kund och om det inte är fullt släpps den ankomna kunden in och en framtida upplockningshändelse skapas för den. 
+ * Om snabbköpet är stängt händer ingenting med den ankomna kunden och ingen ny ankomsthändelse skapas.
  */
 public class ArrivalEvent extends Event {
 	Customer customer;
+	
+	/**
+	 * Konstruktorn håller reda på händelsens tid och håller reda på vilken kund som utför händelsen.
+	 * @param eventTime
+	 * @param customer
+	 */
 	public ArrivalEvent(double eventTime, Customer customer) {
 		super(eventTime);
 		this.customer=customer;
 	}
 	
-	/*
+	/**
 	 * Överskriver den generella händelsens SpecificExe(SupermarketState state, EventQueue eventQueue) metod.
-	 * Ändrar tillståndet och lägger därefter till en upplockningshändelse för den ankomna kunden och en ny ankomsthändelse
-	 * i EventQueue.
+	 * Ändrar tillståndet och hanterar därefter den ankomna kunden och skapar en ny ankomsthändelse om snabbköpet är öppet.
+	 * @param state
+	 * @param eventQueue
 	 */
 	@Override
 	public void SpecificExe (SupermarketState state, EventQueue eventQueue) {

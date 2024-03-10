@@ -16,7 +16,7 @@ import java.util.Observer;
 public class SupermarketState extends SimState {
 
 	/**
-	 * Tilltståndsvariabler / Statistik
+	 * Tillståndsvariabler / Statistik
 	 */
 	private int maxNumOfCustomers;
 	private int numOfCustomers; // Antal customers i butiken

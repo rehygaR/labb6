@@ -5,33 +5,34 @@ import state.SupermarketState;
 /**
  * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
  */
-/*
- * Abstrakt klass som ärvs av de specifika eventen. Metoder:
- * getEventTime() returnerar tiden eventet händer.
- * exeEvent(SupermarketState state, EventQueue eventQueue) ser till att eventets händelse inträffar och ändrar 
- * tillståndets parametrar till de aktuella.
- * SpecificExe (SupermarketState state, EventQueue eventQueue) är en abstrakt metod som överskrivs av de specifika eventen.
+/**
+ * Abstrakt klass som ärvs av de specifika eventen. Innehåller metoder för att hålla reda på tiden händelsen inträffar,
+ * det som ska hända när händelsen inträffar och en abstrakt metod som representerar det som händer i de specifika händelserna.
  */
 
 public abstract class Event {
 	private double eventTime;
 	
-	/*
-	 * Konstruktorn sätter denna händelses tid.
+	/**
+	 * Konstruktorn håller reda på tiden händelsen inträffar.
+	 * @param eventTime
 	 */
 	public Event(double eventTime) {
 		this.eventTime=eventTime;
 	}
 	
-	/*
-	 * Returnerar tiden händelsen inträffar.
+	/**
+	 * Getter för händelsens tid.
+	 * @return eventTime.
 	 */
 	public double getEventTime() {
 		return eventTime;
 	}
 	
-	/*
-	 * Ändrar tillståndets tid till händelsens tid och påkallar sedan den specifika händelsens exekveringsmetod.
+	/**
+	 * Händelsens utförandemetod. Uppdaterar tillståndets tid till händelsens tid och utför sedan den specifika delen av händelsen.
+	 * @param state
+	 * @param eventQueue
 	 */
 	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
 		if(eventTime!=state.getStopTime()) {
@@ -41,9 +42,10 @@ public abstract class Event {
 		
 	}
 	
-	
-	/*
-	 * Abstract metod som överskrivs av de specifika händelsernas exekveringsmetoder.
+	/**
+	 * Abstrakt metod som representerar de specifika händelserna.
+	 * @param state
+	 * @param eventQueue
 	 */
 	public abstract void SpecificExe (SupermarketState state, EventQueue eventQueue);
 	

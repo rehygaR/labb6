@@ -8,22 +8,29 @@ import state.SupermarketState;
 /**
  * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
  */
-/*
- * Den specifika upplockningshändelsen. Innehåller endast konstruktor och SpecificExe (SupermarketState state, EventQueue eventQueue)
- * som först påverkar tillståndet och därefter antingen skapar en framtida betalingshändelse för den specifika kunden eller placerar 
- * den i kassakön.
+/**
+ * Den specifika upplockningshändelsen. Om det finns en ledig kassa får kunden gå och betala direkt annars ställs kunden i 
+ * kassakön.
  */
 public class PickUpEvent extends Event {
 	Customer customer;
+	
+	/**
+	 * Konstruktorn håller reda på tiden händelsen sker och vilken kund som utför händelsen.
+	 * @param eventTime
+	 * @param customer
+	 */
 	public PickUpEvent(double eventTime, Customer customer) {
 		super(eventTime);
 		this.customer=customer;
 	}
 	
-	/*
+	/**
 	 * Överskriver den generella händelsens SpecificExe(SupermarketState state, EventQueue eventQueue) metod.
-	 * Ändrar tillståndet och skapar en framtida betalingshändelse för kunden om det finns lediga kassor, 
+	 * Ändrar tillståndet och skapar en framtida betalningshändelse för kunden om det finns lediga kassor, 
 	 * annars placeras kunden i kassakön.
+	 * @param state
+	 * @param eventQueue
 	 */
 	@Override
 	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
