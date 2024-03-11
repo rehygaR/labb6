@@ -13,7 +13,7 @@ import state.SupermarketState;
 import view.SuperMarketView;
 
 /**
- * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
+ * @author Vilma Axling, David Strommer, Jonatan Fredriksson
  */
 
 /**
@@ -33,6 +33,8 @@ public class Optimize {
 
 		int test2 = getOptimalNumCashiers(M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME, LOW_PAYMENT_TIME,
 				HIGH_PAYMENT_TIME, END_TIME, STOP_TIME, SEED);
+		
+		printParameters();
 
 		System.out.println("Optimalt antal kassor för test 2 (metod 2): " + test2);
 
@@ -70,7 +72,6 @@ public class Optimize {
 		eventQueue.addEvent(new StopEvent(STOP_TIME)); // StopEvent måste ha double argument
 
 		SuperMarketView view = new SuperMarketView(state, false);
-
 		Simulator simulator = new Simulator();
 		simulator.run(state, eventQueue);
 
@@ -138,8 +139,22 @@ public class Optimize {
 			}
 
 		}
+		
 
 		return Nopt3;
+	}
+	
+	private static void printParameters() {
+		System.out.println("PARAMETRAR \n ==========");
+		System.out.println("Max som ryms, M..........: " + String.valueOf(M));
+		System.out.println("Ankomsthastighet, lambda.: " + String.valueOf(L));
+		System.out.println("Plocktider, [P_min..Pmax]: " + "[" + String.valueOf(LOW_COLLECTION_TIME) + ".."
+				+ String.valueOf(HIGH_COLLECTION_TIME) + "]");
+		System.out.println("Betaltider, [K_min..Kmax]: " + "[" + String.valueOf(LOW_PAYMENT_TIME) + ".."
+				+ String.valueOf(HIGH_PAYMENT_TIME) + "]");
+		System.out.println("Frö, f...................: " + String.valueOf(SEED) + "\n");
+		
+		System.out.println("Stängning sker tiden " + END_TIME + " och stophändelsen sker tiden " + STOP_TIME +  "\n");
 	}
 
 }
