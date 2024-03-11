@@ -14,18 +14,16 @@ public class CustomerSource {
 	 * Konstruktor som sätter start id för första kunden som 0
 	 */
 	public CustomerSource() {
-		nextID=0;
+		nextID = 0;
 	}
-	
-	
+
 	/**
 	 * Metod som skapar en ny customer med ett nytt id
-	 * @return
+	 * 
+	 * @return new Customer(nextID++)
 	 */
 	public Customer newCustomer() {
 		return new Customer(nextID++);
 	}
-	
-	
 
 }
