@@ -23,7 +23,7 @@ public class StartEvent extends SupermarketEvent {
 	/**
 	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
 	 * 
-	 * @return "Start"
+	 * @return "Start" the event that happens
 	 */
 	@Override
 	public String getSpecificEvent() {
@@ -35,8 +35,8 @@ public class StartEvent extends SupermarketEvent {
 	 * state, EventQueue eventQueue) metod. Lägger till en ankomsthändelse till
 	 * EventQueue.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SupermarketState.
+	 * @param eventQueue an EventQueue.
 	 */
 	@Override
 	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {

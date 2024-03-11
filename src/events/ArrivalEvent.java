@@ -22,8 +22,8 @@ public class ArrivalEvent extends SupermarketEvent {
 	 * Konstruktorn håller reda på händelsens tid och vilken kund som utför
 	 * händelsen.
 	 * 
-	 * @param eventTime
-	 * @param customer
+	 * @param eventTime Time the event happens.
+	 * @param customer the customer that performs the event.
 	 */
 	public ArrivalEvent(double eventTime, Customer customer) {
 		super(eventTime, customer);
@@ -32,7 +32,7 @@ public class ArrivalEvent extends SupermarketEvent {
 	/**
 	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
 	 * 
-	 * @return "Ankomst"
+	 * @return "Ankomst" the type of event.
 	 */
 	@Override
 	public String getSpecificEvent() {
@@ -44,8 +44,8 @@ public class ArrivalEvent extends SupermarketEvent {
 	 * state, EventQueue eventQueue) metod. Hanterar den ankomna kunden och skapar
 	 * en ny ankomsthändelse om snabbköpet är öppet.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SupermarketState.
+	 * @param eventQueue an EventQueue.
 	 */
 	@Override
 	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {

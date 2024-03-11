@@ -23,8 +23,8 @@ public abstract class SupermarketEvent extends Event {
 	 * Konstruktor med både tid som händelsen inträffar och en kund. Gäller för de
 	 * händelser som hanterar en specifik kund.
 	 * 
-	 * @param eventTime
-	 * @param customer
+	 * @param eventTime the time the event happens.
+	 * @param customer the customer that performs the event.
 	 */
 	public SupermarketEvent(double eventTime, Customer customer) {
 		super(eventTime);
@@ -35,7 +35,7 @@ public abstract class SupermarketEvent extends Event {
 	 * Konstruktor med endast tid som händelsen inträffar. Gäller för de händelser
 	 * som inte behandlar en kund.
 	 * 
-	 * @param eventTime
+	 * @param eventTime the time the event happens.
 	 */
 	public SupermarketEvent(double eventTime) {
 		super(eventTime);
@@ -46,8 +46,8 @@ public abstract class SupermarketEvent extends Event {
 	 * EventQueue eventQueue) metod. Ändrar tillståndet och påkallar sedan den
 	 * specifika händelsens exekveringsmetod.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SimState.
+	 * @param eventQueue an EventQueue.
 	 */
 	@Override
 	public void SpecificExe(SimState simstate, EventQueue eventQueue) {
@@ -70,8 +70,8 @@ public abstract class SupermarketEvent extends Event {
 	/**
 	 * Abstrakt metod som representerar de specifika händelserna.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SupermarketState.
+	 * @param eventQueue an EventQueue.
 	 */
 	public abstract void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue);
 

@@ -15,7 +15,7 @@ public class StopEvent extends Event {
 	/**
 	 * Konstruktorn håller reda på händelsens tid.
 	 * 
-	 * @param eventTime
+	 * @param eventTime the time the event happens.
 	 */
 	public StopEvent(double eventTime) {
 		super(eventTime);
@@ -25,8 +25,8 @@ public class StopEvent extends Event {
 	 * Överskriver den generella händelsens SpecificExe(SupermarketState state,
 	 * EventQueue eventQueue) metod. Ändrar tillståndet och stoppar simuleringen.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SimState.
+	 * @param eventQueue an EventQueue.
 	 */
 	@Override
 	public void SpecificExe(SimState simstate, EventQueue eventQueue) {

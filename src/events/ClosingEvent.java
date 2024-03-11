@@ -13,7 +13,7 @@ public class ClosingEvent extends SupermarketEvent {
 	/**
 	 * Konstruktorn håller reda på händelsens tid.
 	 * 
-	 * @param eventTime
+	 * @param eventTime time the event happens.
 	 */
 	public ClosingEvent(double eventTime) {
 		super(eventTime);
@@ -22,7 +22,7 @@ public class ClosingEvent extends SupermarketEvent {
 	/**
 	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
 	 * 
-	 * @return "Stänger"
+	 * @return "Stänger" the specific event that happens.
 	 */
 	@Override
 	public String getSpecificEvent() {
@@ -34,8 +34,8 @@ public class ClosingEvent extends SupermarketEvent {
 	 * state, EventQueue eventQueue) metod. I detta fall innehåller den ingenting
 	 * eftersom alla specifika delar finns i överklassen SupermarketEvent.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SupermarketState.
+	 * @param eventQueue an EventQueue.
 	 */
 	@Override
 	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {

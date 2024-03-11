@@ -20,8 +20,8 @@ public class PickUpEvent extends SupermarketEvent {
 	 * Konstruktorn håller reda på tiden händelsen sker och vilken kund som utför
 	 * händelsen.
 	 * 
-	 * @param eventTime
-	 * @param customer
+	 * @param eventTime the time the event happens.
+	 * @param customer the customer that performs the event.
 	 */
 	public PickUpEvent(double eventTime, Customer customer) {
 		super(eventTime, customer);
@@ -30,7 +30,7 @@ public class PickUpEvent extends SupermarketEvent {
 	/**
 	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
 	 * 
-	 * @return "Plock"
+	 * @return "Plock" the event that happens.
 	 */
 	@Override
 	public String getSpecificEvent() {
@@ -43,8 +43,8 @@ public class PickUpEvent extends SupermarketEvent {
 	 * framtida betalningshändelse för kunden om det finns lediga kassor, annars
 	 * placeras kunden i kassakön.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SupermarketState.
+	 * @param eventQueue an EventQueue.
 	 */
 	@Override
 	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {

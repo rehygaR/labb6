@@ -18,8 +18,8 @@ public class PaymentEvent extends SupermarketEvent {
 	 * Konstruktorn håller reda på tiden händelsen sker och vilken kund som utför
 	 * händelsen.
 	 * 
-	 * @param eventTime
-	 * @param customer
+	 * @param eventTime the time the event happens.
+	 * @param customer the customer that performs the event.
 	 */
 	public PaymentEvent(double eventTime, Customer customer) {
 		super(eventTime, customer);
@@ -28,7 +28,7 @@ public class PaymentEvent extends SupermarketEvent {
 	/**
 	 * Returnerar en sträng som beskriver vilken sorts händelse som inträffar.
 	 * 
-	 * @return "Betalning"
+	 * @return "Betalning" the event that happens.
 	 */
 	public String getSpecificEvent() {
 		return "Betalning";
@@ -40,8 +40,8 @@ public class PaymentEvent extends SupermarketEvent {
 	 * framtida betalingshändelse för den första kunden i kassakön om det finns en
 	 * sådan, annars ökas antalet lediga kassor.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SupermarketState.
+	 * @param eventQueue an EventQueue.
 	 */
 	@Override
 	public void SupermarketSpecificExe(SupermarketState state, EventQueue eventQueue) {
