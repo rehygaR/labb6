@@ -20,9 +20,9 @@ public class PickupTime {
 	/**
 	 * Konstruktor, skapar en ny randomiserad tid för betalningstider.
 	 * 
-	 * @param deltaL
-	 * @param deltaH
-	 * @param seed
+	 * @param deltaL Lägre lambdat
+	 * @param deltaH Högre lambdat
+	 * @param seed Fröet för slumpningen
 	 */
 	public PickupTime(double deltaL, double deltaH, long seed) {
 		this.deltaH = deltaH;
@@ -34,8 +34,8 @@ public class PickupTime {
 	/**
 	 * Ger nästa tiden för simulatorn (nuvarande tid + delta)
 	 * 
-	 * @param currentTime
-	 * @return
+	 * @param currentTime Nuvarande tiden
+	 * @return this.x.next() + currentTime
 	 */
 	public double getNextTime(double currentTime) {
 

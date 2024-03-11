@@ -21,9 +21,9 @@ public class PaymentTime {
 	/**
 	 * Konstruktor, skapar en ny randomiserad tid för betalningstider.
 	 * 
-	 * @param deltaLower
-	 * @param deltaHigher
-	 * @param seed
+	 * @param deltaLower Lägre lambdat
+	 * @param deltaHigher Högre lambdat
+	 * @param seed Fröet
 	 */
 	public PaymentTime(double deltaLower, double deltaHigher, int seed) {
 		this.deltaH = deltaHigher;
@@ -35,8 +35,8 @@ public class PaymentTime {
 	/**
 	 * Ger nästa tiden för simulatorn (nuvarande tid + delta)
 	 * 
-	 * @param currentTime
-	 * @return
+	 * @param currentTime Nuvarande tiden
+	 * @return this.x.next() + currentTime
 	 */
 	public double getNextTime(double currentTime) {
 
