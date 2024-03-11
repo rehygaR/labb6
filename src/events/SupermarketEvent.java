@@ -36,8 +36,13 @@ public abstract class SupermarketEvent extends Event{
 			state.setCurrentCustomerID(customer.getId());
 		}
 		state.setCurrentEvent(getSpecificEvent());
-		state.updateFreeCashierTime();
-		state.updateTotalQueueTime();
+		if (state.open()) {
+			state.updateFreeCashierTime();
+			state.updateTotalQueueTime();
+		} else if (getSpecificEvent() != "Ankomst") {
+			state.updateFreeCashierTime();
+			state.updateTotalQueueTime();
+		}
 		state.notifyObserver();
 		SupermarketSpecificExe(state, eventQueue);
 	}

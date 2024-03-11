@@ -85,6 +85,10 @@ public class SuperMarketView extends SimView {
 			case "Plock": System.out.print("    ");
 			break;
 			
+			case "Betalning": 
+				lastPaymentTime = state.getTime();
+			break;
+			
 			case "Stop": System.out.print("\n");
 			return;
 		}
@@ -114,7 +118,7 @@ public class SuperMarketView extends SimView {
 		System.out.print(customFormat(String.valueOf(state.getQueuedCustomers()), 7) + "  ");		//antal i kö just nu
 		System.out.println(state.getStringQueue());					//vilka kunder som är i kön (getStringQueue ska returnera en sträng och inte en ArrayList
 		
-		lastPaymentTime = state.getTime();
+
 	}
 	
 	
