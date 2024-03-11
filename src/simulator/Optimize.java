@@ -24,7 +24,7 @@ public class Optimize {
 	/**
 	 * Main metod som kör klassens optimerings metoder
 	 * 
-	 * @param args
+	 * @param args main argument
 	 */
 	public static void main(String[] args) {
 

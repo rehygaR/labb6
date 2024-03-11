@@ -58,6 +58,8 @@ public class SupermarketState extends SimState {
 	 * @param paymentL Lambdat för slumptider för betalningstider
 	 * @param paymentH Lambdat för slumptider för betalningstider
 	 * @param closingTime Tiden då butiken stänger
+	 * @param stopTime Tiden då simuleringen slutar
+	 * @param seed Fröet för slumptalgenereringen
 	 */
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda, double pickupL, double pickupH,
 			double paymentL, double paymentH, double closingTime, double stopTime, int seed) { // Konstruktor, behövs
@@ -169,7 +171,7 @@ public class SupermarketState extends SimState {
 	/**
 	 * Ger tiden som kassorna varit lediga
 	 * 
-	 * @return
+	 * @return this.sumTimeFreeCheckouts
 	 */
 	public double getFreeCashierTime() {
 		return this.sumTimeFreeCheckouts;
@@ -202,8 +204,6 @@ public class SupermarketState extends SimState {
 
 	/**
 	 * Ger kö-tiden
-	 * 
-	 * @return sumTimeCustomersInQueue
 	 */
 	public void updateTotalQueueTime() {
 		this.sumTimeCustomersInQueue += (double) queue.size() * (getTime() - getPreviousTime());

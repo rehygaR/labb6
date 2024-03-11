@@ -7,8 +7,5 @@
  * acts as a middle hand between the general event and the specific events
  * containing code that is general for the events that happen in the
  * supermarket.
- * 
- * @since 1.0
- * @see java.awt
  */
 package events;

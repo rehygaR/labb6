@@ -25,7 +25,7 @@ public class StopEvent extends Event {
 	 * Överskriver den generella händelsens SpecificExe(SupermarketState state,
 	 * EventQueue eventQueue) metod. Ändrar tillståndet och stoppar simuleringen.
 	 * 
-	 * @param state a SimState.
+	 * @param simstate a SimState.
 	 * @param eventQueue an EventQueue.
 	 */
 	@Override

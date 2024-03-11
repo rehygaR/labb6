@@ -33,9 +33,10 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 		this.stopTime = 999;
 	}
 
-	/*
+	/**
 	 * Ger den specifika tiden för simuleringen. Detta är den aktuell uträknad tid,
 	 * dit simuleringen hunnit.
+	 * @return currentTime
 	 */
 	public double getTime() {
 		return currentTime;
@@ -44,12 +45,16 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	/**
 	 * Ger den stängningstiden då butiken ska stänga (INTE då simulatorn ska sluta)
 	 * 
-	 * @return stopTime the time the event stops.
+	 * @return stopTime
 	 */
 	public double getStopTime() {
 		return this.stopTime;
 	}
 
+	/**
+	 * Sätter stopptiden
+	 * @param stopTime Stopptiden
+	 */
 	public void setStopTime(double stopTime) {
 		this.stopTime = stopTime;
 	}
@@ -74,7 +79,7 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 		currentTime = newCurrentTime;
 	}
 
-	/*
+	/**
 	 * Returnar om simulatorn ska fortsätta, dvs denna ger variabeln simActive =
 	 * "false" och avslutar simulatorn. Fungerar som en nödbroms
 	 */

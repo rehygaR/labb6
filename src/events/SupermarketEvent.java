@@ -17,7 +17,11 @@ import state.Customer;
  * observerare.
  */
 public abstract class SupermarketEvent extends Event {
-	Customer customer;
+	
+	/**
+	 * Tar emot en kund, hanterar kunden från eventen
+	 */
+	protected Customer customer;
 
 	/**
 	 * Konstruktor med både tid som händelsen inträffar och en kund. Gäller för de
@@ -46,7 +50,7 @@ public abstract class SupermarketEvent extends Event {
 	 * EventQueue eventQueue) metod. Ändrar tillståndet och påkallar sedan den
 	 * specifika händelsens exekveringsmetod.
 	 * 
-	 * @param state a SimState.
+	 * @param simstate a SimState.
 	 * @param eventQueue an EventQueue.
 	 */
 	@Override
@@ -78,6 +82,7 @@ public abstract class SupermarketEvent extends Event {
 	/**
 	 * Abstrakt metod som överskrivs av de specifika händelserna. Ska returnera en
 	 * sträng som beskriver de specifika händelserna.
+	 * @return specificEvent;
 	 */
 	public abstract String getSpecificEvent();
 }

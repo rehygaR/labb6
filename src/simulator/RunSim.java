@@ -23,7 +23,7 @@ public class RunSim {
 	 * Main metod som skapar en state, eventqueue med 3 events och en vy, sedan körs
 	 * simulatorn
 	 * 
-	 * @param args
+	 * @param args main argument
 	 */
 	public static void main(String[] args) {
 		int N = 2;

@@ -14,7 +14,7 @@ public class ArrivalTime {
 
 	private long seed;
 	private double delta;
-	ExponentialRandomStream x;
+	private ExponentialRandomStream x;
 
 	/**
 	 * Konstruktor, skapar en ny randomiserad tid för ankomsttider.

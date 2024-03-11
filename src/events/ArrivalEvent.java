@@ -1,14 +1,18 @@
 package events;
 
+/**
+ * @author Vilma Axling, David Strommer, Jonatan Fredriksson
+ * <b>Summary</b>
+ */
+
 import state.Customer;
 import state.SupermarketState;
 import general.EventQueue;
 import general.SimState;
 import state.ArrivalTime;
 
-/**
- * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
- */
+
+
 /**
  * Den specifika ankomsthändelsen. Så länge snabbköpet är öppet skapas för varje
  * ankommen kund en ny ankomsthändelse för en ny kund och om det inte är fullt

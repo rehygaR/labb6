@@ -15,7 +15,7 @@ public class PickupTime {
 	private double deltaH;
 	private double deltaL;
 	private long seed;
-	UniformRandomStream x;
+	private UniformRandomStream x;
 
 	/**
 	 * Konstruktor, skapar en ny randomiserad tid för betalningstider.

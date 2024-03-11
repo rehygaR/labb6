@@ -16,7 +16,7 @@ public class PaymentTime {
 	private double deltaL;
 	private double deltaH;
 	private long seed;
-	UniformRandomStream x;
+	private UniformRandomStream x;
 
 	/**
 	 * Konstruktor, skapar en ny randomiserad tid för betalningstider.
