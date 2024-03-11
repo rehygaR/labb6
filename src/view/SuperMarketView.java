@@ -13,12 +13,11 @@ import general.SimState;
 import general.SimView;
 
 /**
- * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
+ * @author Vilma Axling, David Strommer, Jonatan Fredriksson
  */
 
 /**
- * En klass för den specifika SupermarketView vars uppgift är att observera
- * staten och skriva utskrifter då staten ändras.
+ * A class that generates the simulators outputs, it extends SimView and observes a state
  */
 public class SuperMarketView extends SimView {
 
@@ -29,10 +28,8 @@ public class SuperMarketView extends SimView {
 
 	/**
 	 * 
-	 * @param state
-	 * @param print Konstruktor som ser till att view instansen observerar den state
-	 *              som skickats in har även en print boolean som skickas med
-	 *              beroende om man vill ha utskrifter eller inte
+	 * @param state the state you want to observe
+	 * @param print true or false depending if you want to observe the state or not
 	 */
 	public SuperMarketView(SupermarketState state, boolean print) {
 		this.state = state;
@@ -43,7 +40,7 @@ public class SuperMarketView extends SimView {
 	}
 
 	/**
-	 * Printar simulatorns parametrar
+	 * prints the simulators parameters
 	 */
 	@Override
 	public void printStart() {
@@ -62,7 +59,7 @@ public class SuperMarketView extends SimView {
 	}
 
 	/**
-	 * Printar det specifika eventet
+	 * Prints the specific event
 	 */
 	@Override
 	public void printEvent() {
@@ -72,7 +69,7 @@ public class SuperMarketView extends SimView {
 			System.out.print(customFormat(String.valueOf(df.format(state.getStopTime())), 6) + " ");
 		}
 		System.out.print(state.getCurrentEvent());
-		switch (state.getCurrentEvent()) { // Switch sats för att ge rätt inkrement
+		switch (state.getCurrentEvent()) { // Switch statement for increments
 		case "Start":
 			System.out.print("\n");
 
@@ -107,24 +104,20 @@ public class SuperMarketView extends SimView {
 			System.out.print("S");
 		}
 
-		System.out.print(customFormat(String.valueOf(state.getFreeCashiers()), 5)); // antal lediga kassor
-
-		System.out.print(customFormat(String.valueOf(df.format(state.getFreeCashierTime())), 7)); // tid då kassorna
-																									// varit lediga
-		System.out.print(customFormat(String.valueOf(state.getCurrentCustomers()), 4)); // antalet kunder i butiken
-		System.out.print(customFormat(String.valueOf(state.getTotalPayingCustomers()), 4));// antal kunder som handlat
-		System.out.print(customFormat(String.valueOf(state.getMissedCustomers()), 5)); // antal missade kunder
-		System.out.print(customFormat(String.valueOf(state.getTotalQueuedCustomers()), 7)); // antal som varit i FIFO
-																							// kön
-		System.out.print(customFormat(String.valueOf(df.format(state.getTotalQueueTime())), 7)); // total kötid
-		System.out.print(customFormat(String.valueOf(state.getQueuedCustomers()), 7) + "  "); // antal i kö just nu
-		System.out.println(state.getStringQueue()); // vilka kunder som är i kön (getStringQueue ska returnera en sträng
-													// och inte en ArrayList
+		System.out.print(customFormat(String.valueOf(state.getFreeCashiers()), 5)); // Free customers
+		System.out.print(customFormat(String.valueOf(df.format(state.getFreeCashierTime())), 7)); // Time cashiers have been free
+		System.out.print(customFormat(String.valueOf(state.getCurrentCustomers()), 4)); // Nr of customers in the store
+		System.out.print(customFormat(String.valueOf(state.getTotalPayingCustomers()), 4));// Customers who have paid
+		System.out.print(customFormat(String.valueOf(state.getMissedCustomers()), 5)); // Nr of missed customers
+		System.out.print(customFormat(String.valueOf(state.getTotalQueuedCustomers()), 7)); // How many who have been in the FIFO queue
+		System.out.print(customFormat(String.valueOf(df.format(state.getTotalQueueTime())), 7)); // total queuetime
+		System.out.print(customFormat(String.valueOf(state.getQueuedCustomers()), 7) + "  "); // Customers in queue right now
+		System.out.println(state.getStringQueue()); // The queue with its respective customers
 
 	}
 
 	/**
-	 * Printar de slutresultat av simulationen, samt gör diverse beräkningar.
+	 * Prints the end results of the simulation
 	 */
 	@Override
 	public void printResult() {
@@ -148,7 +141,7 @@ public class SuperMarketView extends SimView {
 	}
 
 	/**
-	 * En uppdate metod som kallas då state notifierar observatören
+	 * Prints the correct print method
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
@@ -165,9 +158,9 @@ public class SuperMarketView extends SimView {
 	}
 
 	/**
-	 * Denna metod skapar formatet för utskrifterna så att de följer de angivna exemplen.
-	 * @param form
-	 * @param spacing
+	 * Creates a format for the strings that are printing(aligns the text to the right)
+	 * @param form The string you want to format
+	 * @param spacing How much space you want the string to take up, including the string
 	 * @return newString + form
 	 */
 	private String customFormat(String form, int spacing) {
