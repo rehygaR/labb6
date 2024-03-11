@@ -17,14 +17,24 @@ public class FIFO {
 
 	private ArrayList<Object> queue = new ArrayList<Object>();
 
+	/**
+	 * Lägger till ett objekt till listan
+	 * 
+	 * @param arg0
+	 */
 	public void add(Object arg0) { // Lägger till i kön genom ArrayLists interna kommando
 
 		this.queue.add(arg0);
 
 	}
 
+	/**
+	 * Ger det första objektet i kön
+	 * 
+	 * @return this.queue.get(0)
+	 * @throws NoSuchElementException
+	 */
 	public Object first() throws NoSuchElementException { // Skickar tillbaka det fösta elementet i listan
-		// TODO Auto-generated method stub
 
 		if (this.queue.size() == 0) { // Om kön är tom, kastar den ett undantag istället
 			throw new NoSuchElementException("The size of the queue is 0");
@@ -34,8 +44,12 @@ public class FIFO {
 
 	}
 
+	/**
+	 * Ger true eller false beroende på om kön är tom eller ej
+	 * 
+	 * @return true eller false
+	 */
 	public boolean isEmpty() { // Kollar om kön är tom
-		// TODO Auto-generated method stub
 
 		if (this.queue.size() == 0) {
 			return true;
@@ -44,9 +58,13 @@ public class FIFO {
 		}
 	}
 
+	/**
+	 * Ger den maximala storleken av kön
+	 * 
+	 * @return maxSize
+	 */
 	public int maxSize() { // Retunerar köns max storlek, dvs ArrayListans storlek (antal element men också
 							// de platser i listan som har null)
-		// TODO Auto-generated method stub
 
 		int maxSize = 0;
 
@@ -57,8 +75,12 @@ public class FIFO {
 		return maxSize;
 	}
 
+	/**
+	 * Tar bort det försa elementet i kön
+	 * 
+	 * @throws NoSuchElementException
+	 */
 	public void removeFirst() throws NoSuchElementException { // Tar bort det första element ur kön
-		// TODO Auto-generated method stub
 
 		if (this.queue.size() == 0) {
 			throw new NoSuchElementException("The queue is empty");
@@ -69,12 +91,20 @@ public class FIFO {
 
 	}
 
+	/**
+	 * Ger storleken av kön
+	 * 
+	 * @return this.queue.size()
+	 */
 	public int size() { // Returnerar antal element i kön, dvs om storleken är 10, men endast fylld med
 						// 4 element, returnerar den 4
-		// TODO Auto-generated method stub
 		return this.queue.size();
 	}
 
+	/**
+	 * Kollar om två objekt är av samma typ, storleke är samma och de två köerna
+	 * innehåller samma element på samma platser
+	 */
 	public boolean equals(Object f) { // Kollar om f uppfyller vissa kriterier som kön har.
 
 		if (this.getClass() != f.getClass()) { // kollar om f är av samma typ som this (queue variabeln) annars kastar
@@ -109,19 +139,10 @@ public class FIFO {
 
 	}
 
+	/**
+	 * En metod som gör om kön till en sträng
+	 */
 	public String toString() { // Returnerar en string som börjar med "Queue: "
-
-		/*
-		 * Den av kommenterade koden nedan använder StringBuilder, vet ej om ok
-		 */
-
-//		StringBuilder queueString = new StringBuilder("Queue: "); // Skapar en stringbuilder för att kunna använda "append()"
-//		for (Object elem: queue) { // Skapar en for-each loop som går igenom varje element i kön
-//			queueString.append("(").append(String.valueOf(elem)).append(") "); // "Attachar" i slutet av stringbuildern
-//		}
-//		
-//		return queueString.toString();
-//		
 
 		String str = "[";// Skapar bas-stringen, men värdet "Queue: "
 
