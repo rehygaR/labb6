@@ -1,14 +1,16 @@
 package view;
 
+import static simulator.K.*;
+
 import java.text.DecimalFormat;
 import java.util.Observable;
 import java.util.Observer;
-import events.Event;
-import state.SupermarketState;
-import state.SimState;
-import events.EventQueue;
 
-import static random.K.*;
+import state.SupermarketState;
+import general.Event;
+import general.EventQueue;
+import general.SimState;
+import general.SimView;
 
 /**
  * @author Vilma Axling, David Strömmer, Jonatan Fredriksson

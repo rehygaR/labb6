@@ -1,11 +1,12 @@
 package simulator;
 
-import static random.K.*;
+import static simulator.K.*;
 
 import events.ClosingEvent;
-import events.EventQueue;
 import events.StartEvent;
 import events.StopEvent;
+import general.EventQueue;
+import general.Simulator;
 import state.SupermarketState;
 import view.SuperMarketView;
 

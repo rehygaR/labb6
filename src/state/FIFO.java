@@ -2,7 +2,8 @@ package state;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import events.Event;
+
+import general.Event;
 
 /**
  * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
@@ -125,22 +126,21 @@ public class FIFO {
 		String str = "[";// Skapar bas-stringen, men värdet "Queue: "
 
 		for (int i = 0; i < queue.size(); i++) { // For-each loop
-			
-			if(i==queue.size()-1) {
+
+			if (i == queue.size() - 1) {
 				str = str.concat(String.valueOf(((Customer) queue.get(i)).getId()));
-				
-			}else {
-				str = str.concat(String.valueOf(((Customer) queue.get(i)).getId()) + ", "); // I str läggs det till så att stringen =
-				
+
+			} else {
+				str = str.concat(String.valueOf(((Customer) queue.get(i)).getId()) + ", "); // I str läggs det till så
+																							// att stringen =
+
 			}
-			
-			
+
 		}
 		str = str.concat("]");
 
 		return str; // returnar str
 
-		
 	}
 
 }

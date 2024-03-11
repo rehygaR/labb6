@@ -1,9 +1,7 @@
-package simulator;
+package general;
 
 import events.*;
-import state.SimState;
 import state.SupermarketState;
-import view.SimView;
 import view.SuperMarketView;
 
 /**
