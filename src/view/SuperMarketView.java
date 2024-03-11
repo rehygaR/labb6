@@ -124,7 +124,7 @@ public class SuperMarketView extends SimView {
 	}
 
 	/**
-	 * Printar de slutresultat av simulationen
+	 * Printar de slutresultat av simulationen, samt gör diverse beräkningar.
 	 */
 	@Override
 	public void printResult() {
@@ -164,6 +164,12 @@ public class SuperMarketView extends SimView {
 		updateNr++;
 	}
 
+	/**
+	 * Denna metod skapar formatet för utskrifterna så att de följer de angivna exemplen.
+	 * @param form
+	 * @param spacing
+	 * @return newString + form
+	 */
 	private String customFormat(String form, int spacing) {
 		String newString = "";
 		int copyFrom = spacing - form.length();
