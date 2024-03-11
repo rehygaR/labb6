@@ -228,14 +228,6 @@ public class SupermarketState extends SimState {
 	}
 	
 	/**
-	 * Ger den tid där butiken ska stänga
-	 * @return closingTime
-	 */
-	public double getClosingTime() {
-		return this.closingTime;
-	}
-	
-	/**
 	 * Ger den stängningstiden då butiken ska stänga (INTE då simulatorn ska sluta)
 	 * @return stopTime
 	 */
@@ -322,13 +314,6 @@ public class SupermarketState extends SimState {
 	 */
 	public void removeFirstFIFO() { // Tar bort det första Customern i FIFO kön
 		this.queue.removeFirst();
-	}
-	
-	/**
-	 * Ger true eller false beroende på om kön är tom eller ej
-	 */
-	public void isEmptyFIFO() { // Returnerar true eller false beroende på om kön är tom eller ej
-		this.queue.isEmpty();
 	}
 	
 	/**
