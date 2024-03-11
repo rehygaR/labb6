@@ -7,6 +7,15 @@ import general.EventQueue;
 import general.SimState;
 import state.Customer;
 
+/**
+ * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
+ */
+
+/**
+ * Mellanklass mellan den generella händelsen och de specifika händelserna. Gör
+ * de gemensamma delarna som att uppdatera tillståndet och notifiera
+ * observerare.
+ */
 public abstract class SupermarketEvent extends Event {
 	Customer customer;
 
