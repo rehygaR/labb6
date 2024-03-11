@@ -34,12 +34,11 @@ public abstract class Event {
 	 * @param state
 	 * @param eventQueue
 	 */
-	public void exeEvent(SupermarketState state, EventQueue eventQueue) {
+	public void exeEvent(SimState state, EventQueue eventQueue) {
 		if(eventTime!=state.getStopTime()) {
 			state.setTime(eventTime);
 		}
 		SpecificExe(state, eventQueue);
-		
 	}
 	
 	/**
@@ -47,8 +46,7 @@ public abstract class Event {
 	 * @param state
 	 * @param eventQueue
 	 */
-	public abstract void SpecificExe (SupermarketState state, EventQueue eventQueue);
-	
+	public abstract void SpecificExe (SimState state, EventQueue eventQueue);
 
 	
 

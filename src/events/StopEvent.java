@@ -1,6 +1,7 @@
 package events;
 
 import state.SupermarketState;
+import state.SimState;
 /**
  * @author Vilma Axling, David Strömmer, Jonatan Fredriksson
  */
@@ -8,8 +9,8 @@ import state.SupermarketState;
  * Den specifika stophändelsen. Syftet är att stoppa hela simuleringen.
  */
 public class StopEvent extends Event{
-	public StopEvent(double stopTime) {
-		super(stopTime);
+	public StopEvent(double eventTime) {
+		super(eventTime);
 	}
 	
 	/**
@@ -19,7 +20,8 @@ public class StopEvent extends Event{
 	 * @param eventQueue
 	 */
 	@Override
-	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
+	public void SpecificExe(SimState simstate, EventQueue eventQueue) {
+		SupermarketState state=(SupermarketState) simstate;
 		state.setCurrentEvent("Stop");
 		state.notifyObserver();
 		state.simBreak();

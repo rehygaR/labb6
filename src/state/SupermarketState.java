@@ -65,6 +65,7 @@ public class SupermarketState extends SimState {
 		this.totalQueuedCustomers = 0;
 		this.closingTime = closingTime;
 		this.stopTime=stopTime;
+		setStopTime(stopTime);
 		this.customerID = 0;
 		this.currentEvent = "";
 		this.CS=new CustomerSource();
@@ -238,6 +239,7 @@ public class SupermarketState extends SimState {
 	 * Ger den stängningstiden då butiken ska stänga (INTE då simulatorn ska sluta)
 	 * @return stopTime
 	 */
+	@Override
 	public double getStopTime() {
 		return this.stopTime;
 	}

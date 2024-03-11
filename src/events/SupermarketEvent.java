@@ -3,6 +3,7 @@ package events;
 import state.SupermarketState;
 import state.CustomerSource;
 import state.Customer;
+import state.SimState;
 
 public abstract class SupermarketEvent extends Event{
 	Customer customer;
@@ -31,7 +32,9 @@ public abstract class SupermarketEvent extends Event{
 	 * @param state
 	 * @param eventQueue
 	 */
-	public void SpecificExe(SupermarketState state, EventQueue eventQueue) {
+	@Override
+	public void SpecificExe(SimState simstate, EventQueue eventQueue) {
+		SupermarketState state=(SupermarketState) simstate;
 		if (customer!=null) {
 			state.setCurrentCustomerID(customer.getId());
 		}

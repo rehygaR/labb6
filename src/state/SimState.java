@@ -48,6 +48,10 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 		return this.stopTime;
 	}
 	
+	public void setStopTime(double stopTime) {
+		this.stopTime=stopTime;
+	}
+	
 	/**
 	 * Ger den tidigare tiden
 	 * @return previousTime
