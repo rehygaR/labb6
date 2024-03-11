@@ -20,7 +20,7 @@ public class FIFO {
 	/**
 	 * Lägger till ett objekt till listan
 	 * 
-	 * @param arg0
+	 * @param arg0 Objektet som ska läggas till
 	 */
 	public void add(Object arg0) { // Lägger till i kön genom ArrayLists interna kommando
 
@@ -32,7 +32,7 @@ public class FIFO {
 	 * Ger det första objektet i kön
 	 * 
 	 * @return this.queue.get(0)
-	 * @throws NoSuchElementException
+	 * @throws NoSuchElementException Om storleken är av kön är 0
 	 */
 	public Object first() throws NoSuchElementException { // Skickar tillbaka det fösta elementet i listan
 
@@ -78,7 +78,7 @@ public class FIFO {
 	/**
 	 * Tar bort det försa elementet i kön
 	 * 
-	 * @throws NoSuchElementException
+	 * @throws NoSuchElementException Om kön är tom
 	 */
 	public void removeFirst() throws NoSuchElementException { // Tar bort det första element ur kön
 

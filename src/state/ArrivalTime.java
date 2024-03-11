@@ -19,8 +19,8 @@ public class ArrivalTime {
 	/**
 	 * Konstruktor, skapar en ny randomiserad tid för ankomsttider.
 	 * 
-	 * @param delta
-	 * @param seed
+	 * @param delta Deltat för randomiseringen
+	 * @param seed Fröet för slumpgeneratorn
 	 */
 	public ArrivalTime(double delta, int seed) {
 		this.delta = delta;
@@ -31,7 +31,7 @@ public class ArrivalTime {
 	/**
 	 * Ger nästa tiden för simulatorn (nuvarande tid + delta)
 	 * 
-	 * @param currentTime
+	 * @param currentTime Nuvarande tid
 	 * @return this.x.next() + currentTime
 	 */
 	public double getNextTime(double currentTime) {

@@ -50,14 +50,14 @@ public class SupermarketState extends SimState {
 	 * Konstruktor, skapar en instans av SupermarketState som håller reda på
 	 * tillståndet i generatorn
 	 * 
-	 * @param antalKassor
-	 * @param maxCustomers
-	 * @param arrivalLambda
-	 * @param pickupL
-	 * @param pickupH
-	 * @param paymentL
-	 * @param paymentH
-	 * @param closingTime
+	 * @param antalKassor Antal Kassor
+	 * @param maxCustomers Maximala antalet kassor
+	 * @param arrivalLambda Lambdat för slumptider för ankomster
+	 * @param pickupL Lambdat för slumptider för plocktider
+	 * @param pickupH Lambdat för slumptider för plocktider
+	 * @param paymentL Lambdat för slumptider för betalningstider
+	 * @param paymentH Lambdat för slumptider för betalningstider
+	 * @param closingTime Tiden då butiken stänger
 	 */
 	public SupermarketState(int antalKassor, int maxCustomers, double arrivalLambda, double pickupL, double pickupH,
 			double paymentL, double paymentH, double closingTime, double stopTime, int seed) { // Konstruktor, behövs
@@ -153,7 +153,7 @@ public class SupermarketState extends SimState {
 	/**
 	 * Sätter antalet lediga kassor
 	 * 
-	 * @param freeCheckouts
+	 * @param freeCheckouts Antalet lediga kassor
 	 */
 	public void setFreeCashiers(int freeCheckouts) {
 		this.freeCheckouts = freeCheckouts;
@@ -302,7 +302,7 @@ public class SupermarketState extends SimState {
 	/**
 	 * Sätter ett id för kunden
 	 * 
-	 * @param id
+	 * @param id ID:et för kunden
 	 */
 	public void setCurrentCustomerID(int id) {
 		this.customerID = id;
@@ -320,7 +320,7 @@ public class SupermarketState extends SimState {
 	/**
 	 * Sätter den nuvarande händelsen
 	 * 
-	 * @param currentEvent
+	 * @param currentEvent Det nuvarande eventet
 	 */
 	public void setCurrentEvent(String currentEvent) {
 		this.currentEvent = currentEvent;
@@ -339,7 +339,7 @@ public class SupermarketState extends SimState {
 	 * Lägger till en kund till FIFO-kön, samt lägger till en kund i
 	 * totalQueuedCustomers (statistik)
 	 * 
-	 * @param cr
+	 * @param cr Kundkälla
 	 */
 	public void addFIFO(Customer cr) { // Lägger till en Customer i FIFO kön
 		totalQueuedCustomers = totalQueuedCustomers + 1;

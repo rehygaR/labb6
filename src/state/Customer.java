@@ -13,7 +13,7 @@ public class Customer {
 	/**
 	 * Konstruktor för när man skapar en ny kund
 	 * 
-	 * @param ID
+	 * @param ID ID:et för kunden
 	 */
 	public Customer(int ID) {
 		this.id = ID;
