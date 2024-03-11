@@ -16,8 +16,8 @@ public class Simulator {
 	/**
 	 * Metod som exekverar näststående event så länge nödbromsen inte är i
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SupermarketState.
+	 * @param eventQueue an EventQueue.
 	 */
 	public void run(SupermarketState state, EventQueue eventQueue) {
 
