@@ -58,8 +58,7 @@ public abstract class SupermarketEvent extends Event{
 	public abstract void SupermarketSpecificExe (SupermarketState state, EventQueue eventQueue);
 	
 	/**
-	 * Abstrakt metod som returnerar en sträng som beskriver de specifika händelserna.
-	 * @return String
+	 * Abstrakt metod som överskrivs av de specifika händelserna. Ska returnera en sträng som beskriver de specifika händelserna.
 	 */
 	public abstract String getSpecificEvent();
 }

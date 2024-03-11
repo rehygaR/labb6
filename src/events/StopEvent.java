@@ -9,6 +9,10 @@ import state.SimState;
  * Den specifika stophändelsen. Syftet är att stoppa hela simuleringen.
  */
 public class StopEvent extends Event{
+	/**
+	 * Konstruktorn håller reda på händelsens tid.
+	 * @param eventTime
+	 */
 	public StopEvent(double eventTime) {
 		super(eventTime);
 	}
