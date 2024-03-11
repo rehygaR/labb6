@@ -25,35 +25,19 @@ public class Optimize {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		SupermarketState state = new SupermarketState(1, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
-//				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
-//		int Nopt = 0;
-//		int prevMissedCustomers = state.getMissedCustomers();
-//		
-//		for (int i = 2; i <=  M; i++) {
-//			SupermarketState state = new SupermarketState(i, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
-//					LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME);
-//			
-			
-			
-//			if(state.getMissedCustomers() < prevMissedCustomers) {
-//				prevMissedCustomers = state.getMissedCustomers();
-//				Nopt = i;
-//				
-//			}
 		
-		SupermarketState test = metod1(4, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
+		SupermarketState test = getState(4, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME, STOP_TIME, SEED);
 		
 		
-		int test2 = metod2(M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
+		int test2 = getOptimalNumCashiers(M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME, STOP_TIME, SEED);
 		
-		System.out.println("Optimalt antal kassor för test 2: " + test2);
+		System.out.println("Optimalt antal kassor för test 2 (metod 2): " + test2);
 		
-		int test3 = metod3(SEED);
+		int test3 = getOptimalMaxOptimalCashiers(SEED);
 		
-		System.out.println("Optimalt antal kassor för test 3: " + test3);
+		System.out.println("Optimalt antal kassor för test 3 (metod 3): " + test3);
 		}
 	
 		
@@ -61,8 +45,21 @@ public class Optimize {
 		
 
 	
-	
-	private static SupermarketState metod1(int N, int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
+	/**
+	 * Ger tillståndet med de givna parametrarna (kör simuleringen utan att skriva ut)
+	 * @param N
+	 * @param M
+	 * @param L
+	 * @param LOW_COLLECTION_TIME
+	 * @param HIGH_COLLECTION_TIME
+	 * @param LOW_PAYMENT_TIME
+	 * @param HIGH_PAYMENT_TIME
+	 * @param END_TIME
+	 * @param STOP_TIME
+	 * @param SEED
+	 * @return state
+	 */
+	private static SupermarketState getState(int N, int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
 			double LOW_PAYMENT_TIME, double HIGH_PAYMENT_TIME, double END_TIME, double STOP_TIME, int SEED) {
 		
 		SupermarketState state = new SupermarketState(N, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
@@ -97,16 +94,15 @@ public class Optimize {
 	 * @param SEED
 	 * @return Nopt
 	 */
-	private static int metod2(int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
+	private static int getOptimalNumCashiers(int M, double L, double LOW_COLLECTION_TIME, double HIGH_COLLECTION_TIME,
 			double LOW_PAYMENT_TIME, double HIGH_PAYMENT_TIME, double END_TIME, double STOP_TIME, int SEED) {
 			
 		int Nopt = 0;
 		int prevMissedCustomers = SEED;
 		
 		for (int i = 1; i <=  M; i++) {
-//			SupermarketState state = new SupermarketState(i, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
-//					LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME, SEED);
-			SupermarketState optimal = metod1(i, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
+
+			SupermarketState optimal = getState(i, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 					LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME, STOP_TIME, SEED);
 			
 			
@@ -120,7 +116,12 @@ public class Optimize {
 		return Nopt;
 	}
 	
-	private static int metod3(int SEED) {
+	/**
+	 * Ger det maximala minimala antalet kassor.
+	 * @param SEED
+	 * @return Nopt3
+	 */
+	private static int getOptimalMaxOptimalCashiers(int SEED) {
 		
 		Random rnd = new Random(SEED);
 		int Nopt3 = 0;
@@ -130,7 +131,7 @@ public class Optimize {
 		while (counter < 100) {
 			
 			counter += 1;
-			Nopt = metod2(M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
+			Nopt = getOptimalNumCashiers(M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
 					LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME, STOP_TIME, rnd.nextInt());
 			
 			if (Nopt3 < Nopt) {
