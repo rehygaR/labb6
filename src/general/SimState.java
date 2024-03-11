@@ -44,7 +44,7 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	/**
 	 * Ger den stängningstiden då butiken ska stänga (INTE då simulatorn ska sluta)
 	 * 
-	 * @return stopTime
+	 * @return stopTime the time the event stops.
 	 */
 	public double getStopTime() {
 		return this.stopTime;
@@ -57,7 +57,7 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	/**
 	 * Ger den tidigare tiden
 	 * 
-	 * @return previousTime
+	 * @return previousTime the time of the previous event.
 	 */
 	public double getPreviousTime() {
 		return previousTime;
@@ -67,7 +67,7 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	 * Sätter tiden till den nya aktuella tiden, samt lägger till den gamla tiden
 	 * till i variabeln previousTime, vilket används till beräkningar
 	 * 
-	 * @param newCurrentTime
+	 * @param newCurrentTime the time the latest event happens.
 	 */
 	public void setTime(double newCurrentTime) {
 		previousTime = currentTime;
