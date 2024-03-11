@@ -21,6 +21,7 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	private double currentTime;
 	private double previousTime=0;
 	private boolean simActive;
+	private double stopTime;
 	
 	/**
 	 * Konstruktor, skapar en instans av SimState
@@ -28,6 +29,7 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	public SimState() {
 		this.simActive = true;
 		this.currentTime = 0;
+		this.stopTime=999;
 	}
 	
 	/*
@@ -36,6 +38,14 @@ public class SimState extends Observable { // Vid implementering, klassen som de
 	 */
 	public double getTime() {
 		return currentTime;
+	}
+	
+	/**
+	 * Ger den stängningstiden då butiken ska stänga (INTE då simulatorn ska sluta)
+	 * @return stopTime
+	 */
+	public double getStopTime() {
+		return this.stopTime;
 	}
 	
 	/**

@@ -28,13 +28,13 @@ public class RunSim {
 		int N = 2;
 		
 		SupermarketState state = new SupermarketState(N, M, L, LOW_COLLECTION_TIME, HIGH_COLLECTION_TIME,
-				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME,STOP_TIME, SEED);
+				LOW_PAYMENT_TIME, HIGH_PAYMENT_TIME, END_TIME, SEED);
 		
 		
 		EventQueue eventQueue = new EventQueue();
 		eventQueue.addEvent(new StartEvent());
 		eventQueue.addEvent(new ClosingEvent(END_TIME)); //
-		eventQueue.addEvent(new StopEvent(STOP_TIME)); //StopEvent måste ha double argument
+		eventQueue.addEvent(new StopEvent()); //StopEvent måste ha double argument
 		
 		SuperMarketView view = new SuperMarketView(state, true);
 		
