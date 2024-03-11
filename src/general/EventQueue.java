@@ -27,7 +27,7 @@ public class EventQueue {
 	 * Sorterar händelserna i tidsordning, hämtar ut den första händelsen och tar
 	 * bort det ur listan.
 	 * 
-	 * @return event
+	 * @return event the next event to be executed.
 	 */
 	public Event nextEvent() {
 		sortEvents();
@@ -39,7 +39,7 @@ public class EventQueue {
 	/**
 	 * Lägger till händelser i listan.
 	 * 
-	 * @param event
+	 * @param event the event that is added to the list.
 	 */
 	public void addEvent(Event event) {
 		queue.add(event);

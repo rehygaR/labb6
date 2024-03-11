@@ -1,11 +1,11 @@
 /**
- * Provides the classes necessary to create an applet and the classes an applet uses 
- * to communicate with its applet context. 
+ * Provides the classes necessary to do a general simulation.
  * <p>
- * The applet framework involves two entities: 
- * the applet and the applet context. An applet is an embeddable window (see the 
- * {@link java.awt.Panel} class) with a few extra methods that the applet context 
- * can use to initialize, start, and stop the applet.
+ * Contains classes: 
+ * Event representing a general event.
+ * EventQueue the queue of events.
+ * SimState representing the general state of the simulation.
+ * Simulator is a general simulator and SimView.
  *
  * @since 1.0
  * @see java.awt

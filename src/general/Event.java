@@ -18,7 +18,7 @@ public abstract class Event {
 	/**
 	 * Konstruktorn håller reda på tiden händelsen inträffar.
 	 * 
-	 * @param eventTime
+	 * @param eventTime the time the event happens.
 	 */
 	public Event(double eventTime) {
 		this.eventTime = eventTime;
@@ -27,7 +27,7 @@ public abstract class Event {
 	/**
 	 * Getter för händelsens tid.
 	 * 
-	 * @return eventTime.
+	 * @return eventTime the time the event happens.
 	 */
 	public double getEventTime() {
 		return eventTime;
@@ -37,8 +37,8 @@ public abstract class Event {
 	 * Händelsens utförandemetod. Uppdaterar tillståndets tid till händelsens tid
 	 * och utför sedan den specifika delen av händelsen.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SimState.
+	 * @param eventQueue an EventQueue.
 	 */
 	public void exeEvent(SimState state, EventQueue eventQueue) {
 		if (eventTime != state.getStopTime()) {
@@ -50,8 +50,8 @@ public abstract class Event {
 	/**
 	 * Abstrakt metod som representerar de specifika händelserna.
 	 * 
-	 * @param state
-	 * @param eventQueue
+	 * @param state a SimState.
+	 * @param eventQueue an EventQueue.
 	 */
 	public abstract void SpecificExe(SimState state, EventQueue eventQueue);
 
